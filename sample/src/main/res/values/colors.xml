@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
+    <color name="white">#fff</color>
+    <color name="black">#000</color>
+
+    <color name="blue">#006fed</color>
+    <color name="magenta">#ec008c</color>
+    <color name="green">#00ef00</color>
+    <color name="yellow">#ffe600</color>
+
+    <!-- Screens background color-->
+        <color name="bg_screen1">#ec008c</color>
+        <color name="bg_screen2">#006fed</color>
+        <color name="bg_screen3">#00ef00</color>
+       
+     
+        <!-- dots inactive colors -->
+        <color name="dot_dark_screen1">#c60577</color>
+        <color name="dot_dark_screen2">#0961c6</color>
+        <color name="dot_dark_screen3">#01cf01</color>
+        
+     
+        <!-- dots active colors -->
+        <color name="dot_light_screen1">#e787c0</color>
+        <color name="dot_light_screen2">#82afe3</color>
+        <color name="dot_light_screen3">#afefaf</color>
+     
+     
+        <array name="array_dot_active">
+            <item>@color/dot_light_screen1</item>
+            <item>@color/dot_light_screen2</item>
+            <item>@color/dot_light_screen3</item>
+        </array>
+     
+        <array name="array_dot_inactive">
+            <item>@color/dot_dark_screen1</item>
+            <item>@color/dot_dark_screen2</item>
+            <item>@color/dot_dark_screen3</item>
+        </array>
+
+    <color name="rose">#ED008A</color>
+    <color name="pastel_magenta">#EF9DC5</color>
+    <color name="dark_green">#244637</color>
+    <color name="dirty_green">#456015</color>
+    <color name="teal">#0B5A67</color>
+    <color name="dark_blue">#383281</color>
+    <color name="violet">#9400D3</color>
+    <color name="indigo">#4B0082</color>
+    <color name="orange">#FF7F00</color>
+    <color name="red">#FF0000</color>
+
+    <color name="card1_bg">#f78507</color>
+    <color name="card2_bg">#244637</color>
+    <color name="card3_bg">#c056d9</color>
+    <color name="card4_bg">#967754</color>
+    <color name="card5_bg">#ef075c</color>
+    <color name="card6_bg">#22adf5</color>
+    <color name="card7_bg">#5cee36</color>
+</resources>
