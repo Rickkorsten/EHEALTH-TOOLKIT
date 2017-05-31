@@ -22,6 +22,7 @@ import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.CardView;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -41,7 +42,7 @@ public class MainActivity extends AppCompatActivity implements SwipeStack.SwipeS
 
     private Button mButtonLeft, mButtonRight;
     private FloatingActionButton mFab;
-
+    private CardView cardviewcard;
     private ArrayList<String> mData;
     private SwipeStack mSwipeStack;
     private SwipeStackAdapter mAdapter;
@@ -55,10 +56,12 @@ public class MainActivity extends AppCompatActivity implements SwipeStack.SwipeS
         mButtonLeft = (Button) findViewById(R.id.buttonSwipeLeft);
         mButtonRight = (Button) findViewById(R.id.buttonSwipeRight);
         mFab = (FloatingActionButton) findViewById(R.id.fabAdd);
+     //   cardviewcard = (CardView)findViewById(R.id.cardviewcard);
 
         mButtonLeft.setOnClickListener(this);
         mButtonRight.setOnClickListener(this);
         mFab.setOnClickListener(this);
+       //cardviewcard.setOnClickListener(this);
 
         mData = new ArrayList<>();
         mAdapter = new SwipeStackAdapter(mData);
@@ -66,7 +69,16 @@ public class MainActivity extends AppCompatActivity implements SwipeStack.SwipeS
         mSwipeStack.setListener(this);
 
         fillWithTestData();
+       // clickListenerCard();
     }
+
+   //private void clickListenerCard(){
+        // get cardview
+
+             //   startActivity(new Intent(MainActivity.this, MenuActivity.class));
+//Toast.makeText(getApplicationContext(),"baida",Toast.LENGTH_LONG).show();
+       //     }
+
 
     private void fillWithTestData() {
         for (int x = 0; x < 5; x++) {
@@ -81,6 +93,7 @@ public class MainActivity extends AppCompatActivity implements SwipeStack.SwipeS
         } else if (v.equals(mButtonRight)) {
             mSwipeStack.swipeTopViewToRight();
         } else if (v.equals(mFab)) {
+            startActivity(new Intent(MainActivity.this, CardViewActivity.class));
             mData.add(getString(R.string.dummy_fab));
             mAdapter.notifyDataSetChanged();
         }

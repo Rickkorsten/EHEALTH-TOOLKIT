@@ -10,6 +10,7 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.CardView;
 import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -30,6 +31,7 @@ public class SplashActivity extends AppCompatActivity {
 
     private ViewPager viewPager;
     private MyViewPagerAdapter myViewPagerAdapter;
+    private CardView cardviewcard;
 
     private LinearLayout dotsLayout;
     private TextView[] dots;
@@ -60,6 +62,7 @@ public class SplashActivity extends AppCompatActivity {
         launchHomeScreen();
         finish();
         }
+
 
         // Making notification bar transparent
         if (Build.VERSION.SDK_INT >= 21) {
@@ -114,6 +117,7 @@ public class SplashActivity extends AppCompatActivity {
                 }
             }
         });
+
 
         //////
 
