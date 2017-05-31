@@ -55,11 +55,11 @@ public class SplashActivity extends AppCompatActivity {
 
         // voor eerste keer opstarten
         // Checking for first time launch - before calling setContentView()
-//        prefManager = new PrefManager(this);
-//        if (!prefManager.isFirstTimeLaunch()) {
-//        launchHomeScreen();
-//        finish();
-//        }
+        prefManager = new PrefManager(this);
+        if (!prefManager.isFirstTimeLaunch()) {
+        launchHomeScreen();
+        finish();
+        }
 
         // Making notification bar transparent
         if (Build.VERSION.SDK_INT >= 21) {
