@@ -1,11 +1,13 @@
 package link.fls.swipestacksample;
 
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.CardView;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 public class CategorieActivity extends AppCompatActivity {
 
@@ -18,6 +20,10 @@ public class CategorieActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_categorie);
+
+        TextView kiesTitle = (TextView) findViewById(R.id.kiesTitle);
+        Typeface comfortaa = Typeface.createFromAsset(getAssets(), "fonts/Comfortaa-Regular.ttf");
+        kiesTitle.setTypeface(comfortaa);
     }
 
     private void onclickcategory(){

@@ -5,18 +5,24 @@ package link.fls.swipestacksample;
  */
 
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.graphics.drawable.AnimatedVectorDrawable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 public class MenuActivity extends AppCompatActivity  {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu);
+
+        TextView welkomTitle = (TextView) findViewById(R.id.welkomTitle);
+        Typeface comfortaa = Typeface.createFromAsset(getAssets(), "fonts/Comfortaa-Regular.ttf");
+        welkomTitle.setTypeface(comfortaa);
 
         goToKaartenOverzicht();
         goToCatagorieOverzicht();
