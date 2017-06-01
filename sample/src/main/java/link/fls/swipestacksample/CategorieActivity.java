@@ -21,8 +21,10 @@ public class CategorieActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_categorie);
 
+        onclickcategory();
+
         TextView kiesTitle = (TextView) findViewById(R.id.kiesTitle);
-        Typeface comfortaa = Typeface.createFromAsset(getAssets(), "fonts/Comfortaa-Regular.ttf");
+        Typeface comfortaa = Typeface.createFromAsset(getAssets(),"fonts/Comfortaa-Regular.ttf");
         kiesTitle.setTypeface(comfortaa);
     }
 
