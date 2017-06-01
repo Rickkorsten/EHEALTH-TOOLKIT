@@ -165,7 +165,7 @@ public class MainActivity extends AppCompatActivity implements SwipeStack.SwipeS
                 convertView = getLayoutInflater().inflate(R.layout.card, parent, false);
             }
 
-            TextView textViewCard = (TextView) convertView.findViewById(R.id.textViewCard);
+            TextView textViewCard = (TextView) convertView.findViewById(R.id.title1);
             textViewCard.setText(mData.get(position));
 
             return convertView;
