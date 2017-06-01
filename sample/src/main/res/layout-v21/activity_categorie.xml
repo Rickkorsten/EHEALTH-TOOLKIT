@@ -5,7 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="link.fls.swipestacksample.CategorieActivity"
-    android:layout_marginTop="50dp">
+    android:background="@drawable/gradback"
+    >
 
     <android.support.v7.widget.CardView
         android:layout_width="135dp"

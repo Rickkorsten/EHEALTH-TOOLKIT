@@ -2,10 +2,13 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_height="match_parent"
     android:layout_width="match_parent"
+    android:background="@drawable/gradback"
     >
 
     <ImageButton
+        android:layout_marginTop="10px"
         android:id="@+id/switchButton"
+        android:background="#10000000"
         android:src="@drawable/ic_turn_black_24dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

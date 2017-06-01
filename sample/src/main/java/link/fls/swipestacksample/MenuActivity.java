@@ -19,6 +19,7 @@ public class MenuActivity extends AppCompatActivity  {
         setContentView(R.layout.activity_menu);
 
         goToKaartenOverzicht();
+        goToCatagorieOverzicht();
     }
 
     private void goToKaartenOverzicht() {
@@ -26,6 +27,17 @@ public class MenuActivity extends AppCompatActivity  {
         kaartenOverzichtButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 startActivity(new Intent(MenuActivity.this, MainActivity.class));
+            }
+
+
+        });
+    }
+
+    private void goToCatagorieOverzicht() {
+        Button CatagorieButton = (Button)findViewById(R.id.buttonPerCategorie);
+        CatagorieButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                startActivity(new Intent(MenuActivity.this, CategorieActivity.class));
             }
 
 
