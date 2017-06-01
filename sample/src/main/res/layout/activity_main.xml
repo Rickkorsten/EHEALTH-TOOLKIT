@@ -8,46 +8,46 @@
     android:clipChildren="false"
     tools:context="link.fls.swipestacksample.MainActivity">
 
-    <Button
-        android:id="@+id/buttonSwipeLeft"
-        style="?android:attr/borderlessButtonStyle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"
-        android:text="@string/swipe_left"/>
 
-    <Button
-        android:id="@+id/buttonSwipeRight"
-        style="?android:attr/borderlessButtonStyle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"
-        android:text="@string/swipe_right"/>
 
     <link.fls.swipestack.SwipeStack
         android:id="@+id/swipeStack"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_above="@+id/buttonSwipeLeft"
-        android:padding="@dimen/padding_swipestack"
+        android:layout_above="@+id/fabAdd"
+        android:padding="20dp"
         app:stack_rotation="10"
         app:stack_size="3"/>
 
-    <android.support.design.widget.CoordinatorLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
 
-        <android.support.design.widget.FloatingActionButton
+        <android.support.v7.widget.ButtonBarLayout
             android:id="@+id/fabAdd"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom|center"
-            android:layout_margin="@dimen/margin_fab"
             android:src="@drawable/ic_content_add"
-            app:fabSize="normal"/>
+            app:fabSize="normal"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:weightSum="2">
 
-    </android.support.design.widget.CoordinatorLayout>
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_search_black_24dp"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="Bekijk Kaart!"
+                android:gravity="center_vertical"
+                android:layout_marginLeft="4dp"
+                android:textSize="25dp"
+                android:textColor="@color/white"/>
+
+        </android.support.v7.widget.ButtonBarLayout>
+
+
 
 </RelativeLayout>

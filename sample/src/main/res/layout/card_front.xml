@@ -1,6 +1,27 @@
-<ImageView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:src="@color/blue"
-    android:scaleType="centerCrop"
-    android:contentDescription="baida" />
+<android.support.v7.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="370dp"
+    android:layout_height="550dp"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    android:background="#a6c"
+    android:padding="16dp"
+    android:gravity="bottom"
+    card_view:cardCornerRadius="@dimen/card_corner_radius"
+    card_view:cardElevation="@dimen/elevation_large"
+    android:layout_weight="2"
+    android:layout_gravity="center">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="120dp" />
+
+    <TextView style="?android:textAppearanceSmall"
+        android:textAllCaps="true"
+        android:textColor="#80ffffff"
+        android:textStyle="bold"
+        android:lineSpacingMultiplier="1.2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="baida" />
+
+</android.support.v7.widget.CardView>

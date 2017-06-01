@@ -22,6 +22,7 @@ import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.ButtonBarLayout;
 import android.support.v7.widget.CardView;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -41,7 +42,7 @@ import link.fls.swipestack.SwipeStack;
 public class MainActivity extends AppCompatActivity implements SwipeStack.SwipeStackListener, View.OnClickListener {
 
     private Button mButtonLeft, mButtonRight;
-    private FloatingActionButton mFab;
+    private ButtonBarLayout mFab;
     private CardView cardviewcard;
     private ArrayList<String> mData;
     private SwipeStack mSwipeStack;
@@ -53,13 +54,9 @@ public class MainActivity extends AppCompatActivity implements SwipeStack.SwipeS
         setContentView(R.layout.activity_main);
 
         mSwipeStack = (SwipeStack) findViewById(R.id.swipeStack);
-        mButtonLeft = (Button) findViewById(R.id.buttonSwipeLeft);
-        mButtonRight = (Button) findViewById(R.id.buttonSwipeRight);
-        mFab = (FloatingActionButton) findViewById(R.id.fabAdd);
+        mFab = (ButtonBarLayout) findViewById(R.id.fabAdd);
      //   cardviewcard = (CardView)findViewById(R.id.cardviewcard);
 
-        mButtonLeft.setOnClickListener(this);
-        mButtonRight.setOnClickListener(this);
         mFab.setOnClickListener(this);
        //cardviewcard.setOnClickListener(this);
 
@@ -88,11 +85,7 @@ public class MainActivity extends AppCompatActivity implements SwipeStack.SwipeS
 
     @Override
     public void onClick(View v) {
-        if (v.equals(mButtonLeft)) {
-            mSwipeStack.swipeTopViewToLeft();
-        } else if (v.equals(mButtonRight)) {
-            mSwipeStack.swipeTopViewToRight();
-        } else if (v.equals(mFab)) {
+         if (v.equals(mFab)) {
             startActivity(new Intent(MainActivity.this, CardViewActivity.class));
             mData.add(getString(R.string.dummy_fab));
             mAdapter.notifyDataSetChanged();
