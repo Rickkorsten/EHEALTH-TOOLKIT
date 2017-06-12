@@ -29,22 +29,32 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import link.fls.swipestack.SwipeStack;
+import models.TestModel;
+
+import com.google.firebase.database.ChildEventListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 public class MainActivity extends AppCompatActivity implements SwipeStack.SwipeStackListener, View.OnClickListener {
 
     private Button mButtonLeft, mButtonRight;
     private ButtonBarLayout mFab;
     private CardView cardviewcard;
-    private ArrayList<String> mData;
+    private ArrayList<TestModel> mData = new ArrayList<>();
     private SwipeStack mSwipeStack;
     private SwipeStackAdapter mAdapter;
 
@@ -53,6 +63,32 @@ public class MainActivity extends AppCompatActivity implements SwipeStack.SwipeS
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        // get from firebase
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference myRef = database.getReference("Cards/Concepting");
+
+
+        myRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+
+                for (DataSnapshot postSnapshot : dataSnapshot.getChildren()) {
+                    //Getting the data from snapshot
+                    HashMap<String, Object> row = (HashMap<String, Object>) postSnapshot.getValue();
+                   // mData.add(new TestModel((String )row.get("doel"), (String) row.get("inzet"),(String)row.get("onderwerp"),(String)row.get("titel"),(String)row.get("uitvoering")));
+                    mData.add((TestModel) postSnapshot.getValue(TestModel.class));
+
+                }
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+
+            }
+        });
+
         mSwipeStack = (SwipeStack) findViewById(R.id.swipeStack);
         mFab = (ButtonBarLayout) findViewById(R.id.fabAdd);
      //   cardviewcard = (CardView)findViewById(R.id.cardviewcard);
@@ -60,12 +96,11 @@ public class MainActivity extends AppCompatActivity implements SwipeStack.SwipeS
         mFab.setOnClickListener(this);
        //cardviewcard.setOnClickListener(this);
 
-        mData = new ArrayList<>();
         mAdapter = new SwipeStackAdapter(mData);
         mSwipeStack.setAdapter(mAdapter);
         mSwipeStack.setListener(this);
 
-        fillWithTestData();
+        //fillWithTestData();
        // clickListenerCard();
     }
 
@@ -77,17 +112,16 @@ public class MainActivity extends AppCompatActivity implements SwipeStack.SwipeS
        //     }
 
 
-    private void fillWithTestData() {
-        for (int x = 0; x < 5; x++) {
-            mData.add(getString(R.string.dummy_text) + " " + (x + 1));
-        }
-    }
+   // private void fillWithTestData() {
+  //      for (int x = 0; x < 5; x++) {
+   //         mData.add(new TestModel(getString(R.string.dummy_text) + " " + (x + 1), 1));
+  //      }
+  //  }
 
     @Override
     public void onClick(View v) {
          if (v.equals(mFab)) {
             startActivity(new Intent(MainActivity.this, CardViewActivity.class));
-            mData.add(getString(R.string.dummy_fab));
             mAdapter.notifyDataSetChanged();
         }
     }
@@ -119,14 +153,14 @@ public class MainActivity extends AppCompatActivity implements SwipeStack.SwipeS
 
     @Override
     public void onViewSwipedToRight(int position) {
-        String swipedElement = mAdapter.getItem(position);
+        TestModel swipedElement = mAdapter.getItem(position);
         Toast.makeText(this, getString(R.string.view_swiped_right, swipedElement),
                 Toast.LENGTH_SHORT).show();
     }
 
     @Override
     public void onViewSwipedToLeft(int position) {
-        String swipedElement = mAdapter.getItem(position);
+        TestModel swipedElement = mAdapter.getItem(position);
         Toast.makeText(this, getString(R.string.view_swiped_left, swipedElement),
                 Toast.LENGTH_SHORT).show();
     }
@@ -138,9 +172,9 @@ public class MainActivity extends AppCompatActivity implements SwipeStack.SwipeS
 
     public class SwipeStackAdapter extends BaseAdapter {
 
-        private List<String> mData;
+        private List<TestModel> mData;
 
-        public SwipeStackAdapter(List<String> data) {
+        public SwipeStackAdapter(List<TestModel> data) {
             this.mData = data;
         }
 
@@ -150,7 +184,7 @@ public class MainActivity extends AppCompatActivity implements SwipeStack.SwipeS
         }
 
         @Override
-        public String getItem(int position) {
+        public TestModel getItem(int position) {
             return mData.get(position);
         }
 
@@ -165,10 +199,23 @@ public class MainActivity extends AppCompatActivity implements SwipeStack.SwipeS
                 convertView = getLayoutInflater().inflate(R.layout.card, parent, false);
             }
 
-            TextView textViewCard = (TextView) convertView.findViewById(R.id.title1);
-            textViewCard.setText(mData.get(position));
-
+            // get doel
+            TextView textViewDoel = (TextView) convertView.findViewById(R.id.doelinhoud);
+            textViewDoel.setText(mData.get(position).getDoel());
+            // get inzet
+            TextView textViewInzet = (TextView) convertView.findViewById(R.id.inzetinhoud);
+            textViewInzet.setText(mData.get(position).getInzet());
+            // get onderwerp
+            TextView textViewOnderwerp = (TextView) convertView.findViewById(R.id.titelinhoud);
+            textViewOnderwerp.setText(mData.get(position).getOnderwerp());
+            // get titel
+            TextView textViewTitel = (TextView) convertView.findViewById(R.id.categorieinhoud);
+            textViewTitel.setText(mData.get(position).getTitel());
+            // get uitvoering
+            TextView textViewUitvoering = (TextView) convertView.findViewById(R.id.uitvoeringinhoud);
+            textViewUitvoering.setText(mData.get(position).getUitvoering());
             return convertView;
+
         }
     }
 }
