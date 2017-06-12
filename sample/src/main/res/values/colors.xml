@@ -11,6 +11,11 @@
     <color name="green">#00ef00</color>
     <color name="yellow">#ffe600</color>
 
+    <color name="blueD">#005fcc</color>
+    <color name="magentaD">#cc007a</color>
+    <color name="greenD">#00cc00</color>
+    <color name="yellowD">#ccb800</color>
+
     <!-- Screens background color-->
         <color name="bg_screen1">#ec008c</color>
         <color name="bg_screen2">#006fed</color>
