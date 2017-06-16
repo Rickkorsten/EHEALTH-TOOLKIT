@@ -12,7 +12,6 @@
 
 
     <link.fls.swipestack.SwipeStack
-
         android:id="@+id/swipeStack"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -22,7 +21,43 @@
         app:stack_size="3"/>
 
 
-        <android.support.v7.widget.ButtonBarLayout
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:enabled="false"
+        android:text="Sort by:" />
+
+    <Button
+        android:id="@+id/sorttime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Time"
+
+        android:layout_alignParentTop="true"
+        android:layout_toRightOf="@+id/sortbysubject"
+        android:layout_toEndOf="@+id/sortbysubject" />
+
+    <Button
+        android:id="@+id/sortbysubject"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Subject"
+        android:layout_alignParentTop="true"
+        android:layout_toRightOf="@+id/button2"
+        android:layout_toEndOf="@+id/button2" />
+
+    <Button
+        android:id="@+id/sortbytitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/sorttime"
+        android:layout_toEndOf="@+id/sorttime"
+        android:layout_toRightOf="@+id/sorttime"
+        android:text="title" />
+
+    <android.support.v7.widget.ButtonBarLayout
             android:id="@+id/fabAdd"
             android:layout_marginBottom="3dp"
             android:layout_width="wrap_content"
@@ -40,16 +75,18 @@
                 android:src="@drawable/ic_search_black_24dp"
                 />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:text="Bekijk Kaart!"
-                android:gravity="center_vertical"
-                android:layout_marginLeft="4dp"
-                android:textSize="25dp"
-                android:textColor="@color/white"/>
+        <TextView
+            android:id="@+id/textView4"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="4dp"
+            android:gravity="center_vertical"
+            android:text="Bekijk Kaart!"
+            android:textColor="@color/white"
+            android:textSize="25dp" />
 
-        </android.support.v7.widget.ButtonBarLayout>
+    </android.support.v7.widget.ButtonBarLayout>
+
 
 
 

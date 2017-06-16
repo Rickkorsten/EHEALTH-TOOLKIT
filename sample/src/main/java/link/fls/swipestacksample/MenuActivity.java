@@ -14,7 +14,12 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
 public class MenuActivity extends AppCompatActivity  {
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,6 +38,7 @@ public class MenuActivity extends AppCompatActivity  {
         geschiedenis.setTypeface(comfortaaBold);
         eigen.setTypeface(comfortaaBold);
 
+
         goToKaartenOverzicht();
         goToCatagorieOverzicht();
     }
@@ -41,7 +47,17 @@ public class MenuActivity extends AppCompatActivity  {
         Button kaartenOverzichtButton = (Button)findViewById(R.id.buttonOverzicht);
         kaartenOverzichtButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
+
+//                             // get from firebase
+//                FirebaseDatabase database = FirebaseDatabase.getInstance();
+//                DatabaseReference myRef = database.getReference("Cards/Concepting");
+//
+//                // parse ref into card content loader
+//               main.addcontent(myRef)
+
+
                 startActivity(new Intent(MenuActivity.this, MainActivity.class));
+
             }
 
 

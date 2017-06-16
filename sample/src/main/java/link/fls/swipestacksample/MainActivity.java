@@ -19,6 +19,7 @@ package link.fls.swipestacksample;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.provider.ContactsContract;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
@@ -47,28 +48,60 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 public class MainActivity extends AppCompatActivity implements SwipeStack.SwipeStackListener, View.OnClickListener {
 
-    private Button mButtonLeft, mButtonRight;
+    private Button mButtonLeft, mButtonRight, sortTimeButton, sortSubjectButton, sortTitleButton;
     private ButtonBarLayout mFab;
     private CardView cardviewcard;
     private ArrayList<TestModel> mData = new ArrayList<>();
     private SwipeStack mSwipeStack;
     private SwipeStackAdapter mAdapter;
+    private int position;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+
         // get from firebase
         FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference myRef = database.getReference("Cards/Concepting");
+
+        // query
+        Query ref = database.getReference("Cards").child("Probleem");
+
+        // parse ref into card content loader
+        getFirebaseContent(ref);
+
+        //load views
+        mSwipeStack = (SwipeStack) findViewById(R.id.swipeStack);
+        mFab = (ButtonBarLayout) findViewById(R.id.fabAdd);
+        sortTimeButton = (Button) findViewById(R.id.sorttime);
+        sortSubjectButton = (Button) findViewById(R.id.sortbysubject);
+        sortTitleButton = (Button) findViewById(R.id.sortbytitle);
+        //cardviewcard = (CardView)findViewById(R.id.cardviewcard);
+
+        // set clicks
+        mFab.setOnClickListener(this);
+        sortTimeButton.setOnClickListener(this);
+        sortSubjectButton.setOnClickListener(this);
+        sortTitleButton.setOnClickListener(this);
+        // set adapter
+        mAdapter = new SwipeStackAdapter(mData);
+        mSwipeStack.setAdapter(mAdapter);
+        mSwipeStack.setListener(this);
+
+        //fillWithTestData();
+        // clickListenerCard();
+    }
 
 
-        myRef.addValueEventListener(new ValueEventListener() {
+
+public void getFirebaseContent(Query ref){
+        ref.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
 
@@ -77,8 +110,10 @@ public class MainActivity extends AppCompatActivity implements SwipeStack.SwipeS
                     HashMap<String, Object> row = (HashMap<String, Object>) postSnapshot.getValue();
                    // mData.add(new TestModel((String )row.get("doel"), (String) row.get("inzet"),(String)row.get("onderwerp"),(String)row.get("titel"),(String)row.get("uitvoering")));
                     mData.add((TestModel) postSnapshot.getValue(TestModel.class));
-
+                    mAdapter.notifyDataSetChanged();
                 }
+
+                String data = mData.get(position).getDoel();
 
             }
 
@@ -88,41 +123,50 @@ public class MainActivity extends AppCompatActivity implements SwipeStack.SwipeS
 
             }
         });
-
-        mSwipeStack = (SwipeStack) findViewById(R.id.swipeStack);
-        mFab = (ButtonBarLayout) findViewById(R.id.fabAdd);
-     //   cardviewcard = (CardView)findViewById(R.id.cardviewcard);
-
-        mFab.setOnClickListener(this);
-       //cardviewcard.setOnClickListener(this);
-
-        mAdapter = new SwipeStackAdapter(mData);
-        mSwipeStack.setAdapter(mAdapter);
-        mSwipeStack.setListener(this);
-
-        //fillWithTestData();
-       // clickListenerCard();
     }
 
-   //private void clickListenerCard(){
-        // get cardview
-
-             //   startActivity(new Intent(MainActivity.this, MenuActivity.class));
-//Toast.makeText(getApplicationContext(),"baida",Toast.LENGTH_LONG).show();
-       //     }
-
-
-   // private void fillWithTestData() {
-  //      for (int x = 0; x < 5; x++) {
-   //         mData.add(new TestModel(getString(R.string.dummy_text) + " " + (x + 1), 1));
-  //      }
-  //  }
 
     @Override
     public void onClick(View v) {
          if (v.equals(mFab)) {
+
             startActivity(new Intent(MainActivity.this, CardViewActivity.class));
             mAdapter.notifyDataSetChanged();
+        }
+
+        if (v.equals(sortTimeButton)) {
+            // clear the array
+            mData.clear();
+            // firebase
+            FirebaseDatabase database = FirebaseDatabase.getInstance();
+            // query
+            Query ref = database.getReference("Cards").child("Probleem").orderByChild("inzet");
+            getFirebaseContent(ref);
+            mAdapter.notifyDataSetChanged();
+
+        }
+        if (v.equals(sortSubjectButton)) {
+            // clear the array
+            mData.clear();
+            // firebase
+            FirebaseDatabase database = FirebaseDatabase.getInstance();
+            // query
+            Query ref = database.getReference("Cards").child("Probleem").orderByChild("onderwerp");
+            getFirebaseContent(ref);
+            mAdapter.notifyDataSetChanged();
+
+        }
+
+        if (v.equals(sortTitleButton)) {
+            // clear the array
+            mData.clear();
+            // firebase
+            FirebaseDatabase database = FirebaseDatabase.getInstance();
+            // query
+            Query ref = database.getReference("Cards").child("Probleem").orderByChild("titel");
+            getFirebaseContent(ref);
+            mAdapter.notifyDataSetChanged();
+
         }
     }
 
@@ -139,7 +183,7 @@ public class MainActivity extends AppCompatActivity implements SwipeStack.SwipeS
         switch (item.getItemId()) {
             case R.id.menuReset:
                 mSwipeStack.resetStack();
-                Snackbar.make(mFab, R.string.stack_reset, Snackbar.LENGTH_SHORT).show();
+                //Snackbar.make(mFab, R.string.stack_reset, Snackbar.LENGTH_SHORT).show();
                 return true;
             case R.id.menuGitHub:
                 Intent browserIntent = new Intent(
@@ -151,10 +195,12 @@ public class MainActivity extends AppCompatActivity implements SwipeStack.SwipeS
         return super.onOptionsItemSelected(item);
     }
 
+
     @Override
     public void onViewSwipedToRight(int position) {
         TestModel swipedElement = mAdapter.getItem(position);
-        Toast.makeText(this, getString(R.string.view_swiped_right, swipedElement),
+        String data = mData.get(position).getDoel();
+        Toast.makeText(this, getString(R.string.view_swiped_right, data),
                 Toast.LENGTH_SHORT).show();
     }
 
@@ -170,6 +216,7 @@ public class MainActivity extends AppCompatActivity implements SwipeStack.SwipeS
         Toast.makeText(this, R.string.stack_empty, Toast.LENGTH_SHORT).show();
     }
 
+    //////////// SWIPE STACKADAPTER CLASS //////////////////
     public class SwipeStackAdapter extends BaseAdapter {
 
         private List<TestModel> mData;
