@@ -60,6 +60,7 @@ public class MainActivity extends AppCompatActivity implements SwipeStack.SwipeS
     private SwipeStack mSwipeStack;
     private SwipeStackAdapter mAdapter;
     private int position;
+    private String value;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -107,13 +108,29 @@ public void getFirebaseContent(Query ref){
 
                 for (DataSnapshot postSnapshot : dataSnapshot.getChildren()) {
                     //Getting the data from snapshot
-                    HashMap<String, Object> row = (HashMap<String, Object>) postSnapshot.getValue();
+                    final HashMap<String, Object> row = (HashMap<String, Object>) postSnapshot.getValue();
                    // mData.add(new TestModel((String )row.get("doel"), (String) row.get("inzet"),(String)row.get("onderwerp"),(String)row.get("titel"),(String)row.get("uitvoering")));
                     mData.add((TestModel) postSnapshot.getValue(TestModel.class));
                     mAdapter.notifyDataSetChanged();
+
+                    mFab.setOnClickListener(new View.OnClickListener() {
+                        public void onClick(View v) {
+                            for (TestModel map: mData) {
+                                value = (String) row.get("doel");
+
+                            }
+//                            mAdapter.notifyDataSetChanged();
+//                            Toast.makeText(MainActivity.this, getString(R.string.view_swiped_left, value),
+//                                    Toast.LENGTH_SHORT).show();
+
+
+                        }
+
+
+                    });
                 }
 
-                String data = mData.get(position).getDoel();
+
 
             }
 
@@ -130,7 +147,8 @@ public void getFirebaseContent(Query ref){
     public void onClick(View v) {
          if (v.equals(mFab)) {
 
-            startActivity(new Intent(MainActivity.this, CardViewActivity.class));
+
+           // startActivity(new Intent(MainActivity.this, CardViewActivity.class));
             mAdapter.notifyDataSetChanged();
         }
 
