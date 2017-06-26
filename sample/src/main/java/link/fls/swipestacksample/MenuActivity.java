@@ -41,20 +41,25 @@ public class MenuActivity extends AppCompatActivity  {
 
         goToKaartenOverzicht();
         goToCatagorieOverzicht();
+        goToAddKaartOverzicht();
+    }
+
+    private void goToAddKaartOverzicht() {
+        Button addKaartButton = (Button)findViewById(R.id.buttonEigenKaart);
+        addKaartButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                startActivity(new Intent(MenuActivity.this, addcard.class));
+
+            }
+
+
+        });
     }
 
     private void goToKaartenOverzicht() {
         Button kaartenOverzichtButton = (Button)findViewById(R.id.buttonOverzicht);
         kaartenOverzichtButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-
-//                             // get from firebase
-//                FirebaseDatabase database = FirebaseDatabase.getInstance();
-//                DatabaseReference myRef = database.getReference("Cards/Concepting");
-//
-//                // parse ref into card content loader
-//               main.addcontent(myRef)
-
 
                 startActivity(new Intent(MenuActivity.this, MainActivity.class));
 
