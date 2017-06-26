@@ -61,7 +61,7 @@ public class MainActivity extends AppCompatActivity implements SwipeStack.SwipeS
     private SwipeStack mSwipeStack;
     private SwipeStackAdapter mAdapter;
     private int position;
-    private String value;
+    private String value, fotoURL;
     private Typeface comfortaa;
 
     @Override
@@ -98,9 +98,6 @@ public class MainActivity extends AppCompatActivity implements SwipeStack.SwipeS
         mSwipeStack.setListener(this);
         comfortaa = Typeface.createFromAsset(getAssets(), "fonts/Comfortaa-Regular.ttf");
 
-
-        //fillWithTestData();
-        // clickListenerCard();
     }
 
 
@@ -117,21 +114,6 @@ public void getFirebaseContent(Query ref){
                     mData.add((TestModel) postSnapshot.getValue(TestModel.class));
                     mAdapter.notifyDataSetChanged();
 
-                    mFab.setOnClickListener(new View.OnClickListener() {
-                        public void onClick(View v) {
-                            for (TestModel map: mData) {
-                                value = (String) row.get("doel");
-
-                            }
-                            mAdapter.notifyDataSetChanged();
-                            Toast.makeText(MainActivity.this, getString(R.string.view_swiped_left, value),
-                                    Toast.LENGTH_SHORT).show();
-
-
-                        }
-
-
-                    });
                 }
 
 
@@ -285,6 +267,8 @@ public void getFirebaseContent(Query ref){
             // get uitvoering
             TextView textViewUitvoering = (TextView) convertView.findViewById(R.id.uitvoeringinhoud);
             textViewUitvoering.setText(mData.get(position).getUitvoering());
+            // get URL
+            fotoURL = mData.get(position).geturl();
             return convertView;
 
         }
