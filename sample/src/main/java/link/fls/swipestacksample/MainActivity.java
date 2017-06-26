@@ -34,6 +34,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -51,6 +52,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
+import com.squareup.picasso.Picasso;
 
 public class MainActivity extends AppCompatActivity implements SwipeStack.SwipeStackListener, View.OnClickListener {
 
@@ -261,14 +263,21 @@ public void getFirebaseContent(Query ref){
             textViewOnderwerp.setTypeface(comfortaa);
             textViewOnderwerp.setText(mData.get(position).getOnderwerp());
             // get titel
+            String title = mData.get(position).getTitel();
             TextView textViewTitel = (TextView) convertView.findViewById(R.id.categorieinhoud);
             textViewTitel.setTypeface(comfortaa);
-            textViewTitel.setText(mData.get(position).getTitel());
+            textViewTitel.setText(title);
+            if (title == "Probleem"){
+                textViewOnderwerp.setBackgroundColor(getColor(R.color.blue));
+                Toast.makeText(getBaseContext(), title, Toast.LENGTH_LONG).show();
+            }
             // get uitvoering
             TextView textViewUitvoering = (TextView) convertView.findViewById(R.id.uitvoeringinhoud);
             textViewUitvoering.setText(mData.get(position).getUitvoering());
             // get URL
+            ImageView image = (ImageView) convertView.findViewById(R.id.cardImage);
             fotoURL = mData.get(position).geturl();
+            Picasso.with(getBaseContext()).load(fotoURL).into(image);
             return convertView;
 
         }
