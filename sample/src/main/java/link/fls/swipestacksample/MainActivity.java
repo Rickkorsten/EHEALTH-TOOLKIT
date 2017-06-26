@@ -16,6 +16,7 @@
 
 package link.fls.swipestacksample;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Typeface;
 import android.net.Uri;
@@ -34,6 +35,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -51,6 +53,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
+import com.squareup.picasso.Picasso;
 
 public class MainActivity extends AppCompatActivity implements SwipeStack.SwipeStackListener, View.OnClickListener {
 
@@ -96,6 +99,7 @@ public class MainActivity extends AppCompatActivity implements SwipeStack.SwipeS
         mAdapter = new SwipeStackAdapter(mData);
         mSwipeStack.setAdapter(mAdapter);
         mSwipeStack.setListener(this);
+        mSwipeStack.onSwipeEnd();
         comfortaa = Typeface.createFromAsset(getAssets(), "fonts/Comfortaa-Regular.ttf");
 
 
@@ -205,9 +209,11 @@ public void getFirebaseContent(Query ref){
         switch (item.getItemId()) {
             case R.id.menuReset:
                 mSwipeStack.resetStack();
-                //Snackbar.make(mFab, R.string.stack_reset, Snackbar.LENGTH_SHORT).show();
+                Snackbar.make(mFab, R.string.stack_reset, Snackbar.LENGTH_SHORT).show();
                 return true;
             case R.id.menuGitHub:
+                Toast.makeText(this, getString(R.string.view_swiped_right, "JAAA"),
+                        Toast.LENGTH_SHORT).show();
                 Intent browserIntent = new Intent(
                         Intent.ACTION_VIEW, Uri.parse("https://github.com/flschweiger/SwipeStack"));
                 startActivity(browserIntent);
@@ -229,9 +235,11 @@ public void getFirebaseContent(Query ref){
     @Override
     public void onViewSwipedToLeft(int position) {
         TestModel swipedElement = mAdapter.getItem(position);
+        mSwipeStack.findFocus();
         Toast.makeText(this, getString(R.string.view_swiped_left, swipedElement),
                 Toast.LENGTH_SHORT).show();
     }
+
 
     @Override
     public void onStackEmpty() {
@@ -285,6 +293,9 @@ public void getFirebaseContent(Query ref){
             // get uitvoering
             TextView textViewUitvoering = (TextView) convertView.findViewById(R.id.uitvoeringinhoud);
             textViewUitvoering.setText(mData.get(position).getUitvoering());
+            // get Foto
+            ImageView image = (ImageView) convertView.findViewById(R.id.cardImage);
+            Picasso.with(getBaseContext()).load("https://image.freepik.com/free-photo/man-holding-a-camera_447-19326806.jpg").into(image);
             return convertView;
 
         }

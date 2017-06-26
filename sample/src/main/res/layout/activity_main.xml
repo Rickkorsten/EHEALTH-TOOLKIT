@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:clipChildren="false"
-    android:background="#fff"
+    android:background="@drawable/gradback"
     tools:context="link.fls.swipestacksample.MainActivity">
 
     <Button
@@ -50,10 +50,9 @@
         android:layout_height="match_parent"
         android:layout_below="@id/sortbytitle"
         android:layout_above="@+id/fabAdd"
-        android:padding="20dp"
-        app:stack_rotation="10"
+        android:padding="28dp"
+        app:stack_rotation="0"
         app:stack_size="3"
-        android:background="#fff"
         />
 
     <android.support.v7.widget.ButtonBarLayout
