@@ -16,6 +16,8 @@
     <color name="greenD">#00cc00</color>
     <color name="yellowD">#ccb800</color>
 
+    <color name="magentaL">#ff98d5</color>
+
     <!-- Screens background color-->
         <color name="bg_screen1">#ec008c</color>
         <color name="bg_screen2">#006fed</color>

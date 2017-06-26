@@ -6,20 +6,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:clipChildren="false"
-
+    android:background="#fff"
     tools:context="link.fls.swipestacksample.MainActivity">
-
-
-
-    <link.fls.swipestack.SwipeStack
-        android:id="@+id/swipeStack"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_above="@+id/fabAdd"
-        android:padding="20dp"
-        app:stack_rotation="10"
-        app:stack_size="3"/>
-
 
     <Button
         android:id="@+id/button2"
@@ -34,7 +22,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Time"
-
         android:layout_alignParentTop="true"
         android:layout_toRightOf="@+id/sortbysubject"
         android:layout_toEndOf="@+id/sortbysubject" />
@@ -56,6 +43,18 @@
         android:layout_toEndOf="@+id/sorttime"
         android:layout_toRightOf="@+id/sorttime"
         android:text="title" />
+
+    <link.fls.swipestack.SwipeStack
+        android:id="@+id/swipeStack"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/sortbytitle"
+        android:layout_above="@+id/fabAdd"
+        android:padding="20dp"
+        app:stack_rotation="10"
+        app:stack_size="3"
+        android:background="#fff"
+        />
 
     <android.support.v7.widget.ButtonBarLayout
             android:id="@+id/fabAdd"

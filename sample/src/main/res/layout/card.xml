@@ -17,10 +17,8 @@
         android:src="@color/blue"
         android:id="@+id/cardImage"
         android:layout_width="match_parent"
-        android:layout_height="250dp"
-        android:contentDescription="fOTO">
-
-    </ImageView>
+        android:layout_height="220dp"
+        android:contentDescription="fOTO"/>
 
     <TextView
         android:id="@+id/categorieinhoud"
@@ -32,37 +30,39 @@
         android:rotation="-90"
         android:layout_marginBottom="-10px"/>
 
-    <TextView style="?android:textAppearanceSmall"
+    <TextView
         android:id="@+id/titelinhoud"
-        android:textColor="#000"
-        android:textStyle="normal"
-        android:lineSpacingMultiplier="1.2"
+        style="?android:textAppearanceSmall"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:textAlignment="center"
-        android:text="Video prototype"
-        android:textSize="30dp"
+        android:layout_height="60dp"
+        android:padding="2dp"
+        android:layout_marginTop="220dp"
         android:background="@color/white"
-        android:layout_marginTop="250dp"
-        />
+        android:lineSpacingMultiplier="1.2"
+        android:text="Video prototype"
+        android:textAlignment="center"
+        android:textColor="#fff"
+        android:textSize="30dp"
+        android:textStyle="normal"
+        android:backgroundTint="@color/magenta"/>
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="300dp">
+        android:layout_marginTop="280dp">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="125dp"
+            android:layout_height="match_parent"
             android:orientation="vertical"
-            >
+            android:background="@color/magentaL">
 
             <TextView
                 android:id="@+id/textView3"
-                android:layout_width="wrap_content"
-                android:layout_height="0dp"
-                android:layout_marginLeft="15dp"
-                android:layout_marginRight="15dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
                 android:layout_marginTop="15dp"
                 android:layout_weight="1"
                 android:text="Doel"
@@ -73,28 +73,20 @@
                 android:id="@+id/doelinhoud"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginTop="-26dp"
                 android:layout_weight="1"
-                android:layout_marginLeft="15dp"
-                android:layout_marginRight="15dp"
-                android:layout_marginTop="-18dp"
-                android:textColor="@color/black"
-                android:textSize="18dp"
-                android:text="Een video prototype maken zodat je andere een impressie kan geven" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_marginTop="125dp"
-            android:layout_width="match_parent"
-            android:layout_height="125dp"
-            android:orientation="vertical">
+                android:text="Een video prototype maken zodat je andere een impressie kan geven"
+                android:textColor="@color/white"
+                android:textSize="18dp" />
 
             <TextView
                 android:id="@+id/textView5"
                 android:layout_width="wrap_content"
-                android:layout_height="0dp"
-                android:layout_marginLeft="15dp"
-                android:layout_marginRight="15dp"
-                android:layout_marginTop="15dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
                 android:layout_weight="1"
                 android:text="Uitkomst"
                 android:textColor="@color/black"
@@ -104,21 +96,22 @@
                 android:id="@+id/uitvoeringinhoud"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginTop="-26dp"
                 android:layout_weight="1"
-                android:layout_marginLeft="15dp"
-                android:layout_marginRight="15dp"
-                android:layout_marginTop="-18dp"
-                android:textColor="@color/black"
-                android:textSize="18dp"
-                android:text="Je idee kunnen delen met andere en zo meer feedback krijgen" />
+                android:text="Je idee kunnen delen met andere en zo meer feedback krijgen"
+                android:textColor="@color/white"
+                android:textSize="18dp" />
         </LinearLayout>
+
         <TextView
             android:id="@+id/inzetinhoud"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="2"
             android:textColor="@color/black"
-            android:textSize="18dp"/>
+            android:textSize="18dp" />
     </RelativeLayout>
 
 </android.support.v7.widget.CardView>

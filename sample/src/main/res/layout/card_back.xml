@@ -1,24 +1,22 @@
-<android.support.v7.widget.CardView
-xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
     android:layout_width="370dp"
     android:layout_height="550dp"
-    android:background="#a6c"
-    android:padding="16dp"
-    android:gravity="bottom"
-    card_view:cardCornerRadius="@dimen/card_corner_radius"
-    card_view:cardElevation="@dimen/elevation_large"
+    android:layout_gravity="center"
     android:layout_weight="2"
-    android:layout_gravity="center">
-
+    android:background="#a6c"
+    android:gravity="bottom"
+    android:padding="16dp"
+    card_view:cardCornerRadius="@dimen/card_corner_radius"
+    card_view:cardElevation="@dimen/elevation_large">
 
 
     <ImageView
-        android:src="@color/blue"
         android:id="@+id/cardImage"
         android:layout_width="match_parent"
         android:layout_height="250dp"
-        android:contentDescription="fOTO">
+        android:contentDescription="fOTO"
+        android:src="@color/blue">
 
     </ImageView>
 
@@ -26,43 +24,45 @@ xmlns:android="http://schemas.android.com/apk/res/android"
         android:id="@+id/categorieinhoud"
         android:layout_width="wrap_content"
         android:layout_height="123dp"
-        android:text="Concepting"
-        android:textSize="45px"
-        android:textColor="@color/black"
+        android:layout_marginBottom="-10px"
         android:rotation="-90"
-        android:layout_marginBottom="-10px"/>
+        android:text="Concepting"
+        android:textColor="@color/black"
+        android:textSize="45px" />
 
-    <TextView style="?android:textAppearanceSmall"
-android:id="@+id/titelinhoud"
-        android:textColor="#000"
-        android:textStyle="normal"
-        android:lineSpacingMultiplier="1.2"
+    <TextView
+        android:id="@+id/titelinhoud"
+        style="?android:textAppearanceSmall"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:textAlignment="center"
-        android:text="Video prototype"
-        android:textSize="30dp"
-        android:background="@color/white"
+        android:layout_height="60dp"
+        android:padding="10dp"
         android:layout_marginTop="250dp"
-        />
+        android:background="@color/white"
+        android:lineSpacingMultiplier="1.2"
+        android:text="Video prototype"
+        android:textAlignment="center"
+        android:textColor="#fff"
+        android:textSize="30dp"
+        android:textStyle="normal"
+        android:backgroundTint="@color/magenta"/>
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="300dp">
+        android:layout_marginTop="310dp">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="125dp"
+            android:layout_height="match_parent"
             android:orientation="vertical"
-            >
+            android:background="@color/magentaL">
 
             <TextView
                 android:id="@+id/textView3"
-                android:layout_width="wrap_content"
-                android:layout_height="0dp"
-                android:layout_marginLeft="15dp"
-                android:layout_marginRight="15dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
                 android:layout_marginTop="15dp"
                 android:layout_weight="1"
                 android:text="Doel"
@@ -73,28 +73,20 @@ android:id="@+id/titelinhoud"
                 android:id="@+id/doelinhoud"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginTop="-26dp"
                 android:layout_weight="1"
-                android:layout_marginLeft="15dp"
-                android:layout_marginRight="15dp"
-                android:layout_marginTop="-18dp"
-                android:textColor="@color/black"
-                android:textSize="18dp"
-                android:text="Een video prototype maken zodat je andere een impressie kan geven" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_marginTop="125dp"
-            android:layout_width="match_parent"
-            android:layout_height="125dp"
-            android:orientation="vertical">
+                android:text="Een video prototype maken zodat je andere een impressie kan geven"
+                android:textColor="@color/white"
+                android:textSize="18dp" />
 
             <TextView
                 android:id="@+id/textView5"
                 android:layout_width="wrap_content"
-                android:layout_height="0dp"
-                android:layout_marginLeft="15dp"
-                android:layout_marginRight="15dp"
-                android:layout_marginTop="15dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
                 android:layout_weight="1"
                 android:text="Uitkomst"
                 android:textColor="@color/black"
@@ -104,21 +96,22 @@ android:id="@+id/titelinhoud"
                 android:id="@+id/uitvoeringinhoud"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginTop="-26dp"
                 android:layout_weight="1"
-                android:layout_marginLeft="15dp"
-                android:layout_marginRight="15dp"
-                android:layout_marginTop="-18dp"
-                android:textColor="@color/black"
-                android:textSize="18dp"
-                android:text="Je idee kunnen delen met andere en zo meer feedback krijgen" />
+                android:text="Je idee kunnen delen met andere en zo meer feedback krijgen"
+                android:textColor="@color/white"
+                android:textSize="18dp" />
         </LinearLayout>
+
         <TextView
             android:id="@+id/inzetinhoud"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="2"
             android:textColor="@color/black"
-            android:textSize="18dp"/>
+            android:textSize="18dp" />
     </RelativeLayout>
 
 </android.support.v7.widget.CardView>

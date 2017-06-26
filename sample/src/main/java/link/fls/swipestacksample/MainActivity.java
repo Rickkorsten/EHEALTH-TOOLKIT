@@ -17,6 +17,7 @@
 package link.fls.swipestacksample;
 
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.ContactsContract;
@@ -61,6 +62,7 @@ public class MainActivity extends AppCompatActivity implements SwipeStack.SwipeS
     private SwipeStackAdapter mAdapter;
     private int position;
     private String value;
+    private Typeface comfortaa;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -94,6 +96,8 @@ public class MainActivity extends AppCompatActivity implements SwipeStack.SwipeS
         mAdapter = new SwipeStackAdapter(mData);
         mSwipeStack.setAdapter(mAdapter);
         mSwipeStack.setListener(this);
+        comfortaa = Typeface.createFromAsset(getAssets(), "fonts/Comfortaa-Regular.ttf");
+
 
         //fillWithTestData();
         // clickListenerCard();
@@ -119,9 +123,9 @@ public void getFirebaseContent(Query ref){
                                 value = (String) row.get("doel");
 
                             }
-//                            mAdapter.notifyDataSetChanged();
-//                            Toast.makeText(MainActivity.this, getString(R.string.view_swiped_left, value),
-//                                    Toast.LENGTH_SHORT).show();
+                            mAdapter.notifyDataSetChanged();
+                            Toast.makeText(MainActivity.this, getString(R.string.view_swiped_left, value),
+                                    Toast.LENGTH_SHORT).show();
 
 
                         }
@@ -148,7 +152,7 @@ public void getFirebaseContent(Query ref){
          if (v.equals(mFab)) {
 
 
-           // startActivity(new Intent(MainActivity.this, CardViewActivity.class));
+            startActivity(new Intent(MainActivity.this, CardViewActivity.class));
             mAdapter.notifyDataSetChanged();
         }
 
@@ -272,9 +276,11 @@ public void getFirebaseContent(Query ref){
             textViewInzet.setText(mData.get(position).getInzet());
             // get onderwerp
             TextView textViewOnderwerp = (TextView) convertView.findViewById(R.id.titelinhoud);
+            textViewOnderwerp.setTypeface(comfortaa);
             textViewOnderwerp.setText(mData.get(position).getOnderwerp());
             // get titel
             TextView textViewTitel = (TextView) convertView.findViewById(R.id.categorieinhoud);
+            textViewTitel.setTypeface(comfortaa);
             textViewTitel.setText(mData.get(position).getTitel());
             // get uitvoering
             TextView textViewUitvoering = (TextView) convertView.findViewById(R.id.uitvoeringinhoud);
