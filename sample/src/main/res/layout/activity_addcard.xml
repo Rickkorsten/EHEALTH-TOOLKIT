@@ -12,7 +12,7 @@
         android:layout_height="wrap_content"
         android:ems="10"
         android:inputType="textPersonName"
-        android:text="Name" />
+        />
 
     <EditText
         android:id="@+id/makeinzet"
@@ -20,7 +20,6 @@
         android:layout_height="wrap_content"
         android:ems="10"
         android:inputType="textPersonName"
-        android:text="Name"
         tools:layout_editor_absoluteY="86dp"
         tools:layout_editor_absoluteX="0dp" />
 
@@ -30,7 +29,6 @@
         android:layout_height="wrap_content"
         android:ems="10"
         android:inputType="textPersonName"
-        android:text="Name"
         tools:layout_editor_absoluteY="43dp"
         tools:layout_editor_absoluteX="0dp" />
 
@@ -40,7 +38,6 @@
         android:layout_height="wrap_content"
         android:ems="10"
         android:inputType="textPersonName"
-        android:text="Name"
         tools:layout_editor_absoluteX="0dp"
         tools:layout_editor_absoluteY="129dp" />
 
@@ -50,9 +47,17 @@
         android:layout_height="wrap_content"
         android:ems="10"
         android:inputType="textPersonName"
-        android:text="Name"
         tools:layout_editor_absoluteX="0dp"
         tools:layout_editor_absoluteY="172dp" />
+
+    <EditText
+        android:id="@+id/makeurl"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPersonName"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="215dp" />
 
     <Button
         android:id="@+id/submitcard"
@@ -60,7 +65,7 @@
         android:layout_height="wrap_content"
         android:text="Button"
         tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="215dp" />
+        tools:layout_editor_absoluteY="265dp" />
 
 
 </android.support.constraint.ConstraintLayout>
