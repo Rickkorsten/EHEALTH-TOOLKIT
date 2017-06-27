@@ -16,6 +16,7 @@
 
 package link.fls.swipestacksample;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Typeface;
 import android.net.Uri;
@@ -23,6 +24,7 @@ import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.ButtonBarLayout;
 import android.support.v7.widget.CardView;
@@ -58,14 +60,14 @@ import com.squareup.picasso.Picasso;
 
 public class MainActivity extends AppCompatActivity implements SwipeStack.SwipeStackListener, View.OnClickListener {
 
-    private Button mButtonLeft, mButtonRight, sortTimeButton, sortSubjectButton, sortTitleButton;
+    private Button mButtonLeft, mButtonRight, sortbtn;
     private ButtonBarLayout mFab;
     private CardView cardviewcard;
     private ArrayList<TestModel> mData = new ArrayList<>();
     private SwipeStack mSwipeStack;
     private SwipeStackAdapter mAdapter;
     private int position;
-    private String value, fotoURL;
+    private String value, fotoURL, sortvalue;
     private Typeface comfortaa;
 
     @Override
@@ -86,16 +88,12 @@ public class MainActivity extends AppCompatActivity implements SwipeStack.SwipeS
         //load views
         mSwipeStack = (SwipeStack) findViewById(R.id.swipeStack);
         mFab = (ButtonBarLayout) findViewById(R.id.fabAdd);
-        sortTimeButton = (Button) findViewById(R.id.sorttime);
-        sortSubjectButton = (Button) findViewById(R.id.sortbysubject);
-        sortTitleButton = (Button) findViewById(R.id.sortbytitle);
+        sortbtn = (Button) findViewById(R.id.sort);
         //cardviewcard = (CardView)findViewById(R.id.cardviewcard);
 
         // set clicks
         mFab.setOnClickListener(this);
-        sortTimeButton.setOnClickListener(this);
-        sortSubjectButton.setOnClickListener(this);
-        sortTitleButton.setOnClickListener(this);
+        sortbtn.setOnClickListener(this);
         // set adapter
         mAdapter = new SwipeStackAdapter(mData);
         mSwipeStack.setAdapter(mAdapter);
@@ -139,40 +137,49 @@ public class MainActivity extends AppCompatActivity implements SwipeStack.SwipeS
             mAdapter.notifyDataSetChanged();
         }
 
-        if (v.equals(sortTimeButton)) {
-            // clear the array
-            mData.clear();
-            // firebase
-            FirebaseDatabase database = FirebaseDatabase.getInstance();
-            // query
-            Query ref = database.getReference("Cards").child("Probleem").orderByChild("inzet");
-            getFirebaseContent(ref);
-            mAdapter.notifyDataSetChanged();
-
-        }
-        if (v.equals(sortSubjectButton)) {
-            // clear the array
-            mData.clear();
-            // firebase
-            FirebaseDatabase database = FirebaseDatabase.getInstance();
-            // query
-            Query ref = database.getReference("Cards").child("Probleem").orderByChild("onderwerp");
-            getFirebaseContent(ref);
-            mAdapter.notifyDataSetChanged();
+        if (v.equals(sortbtn)) {
+            setsortdialog();
 
         }
 
-        if (v.equals(sortTitleButton)) {
-            // clear the array
-            mData.clear();
-            // firebase
-            FirebaseDatabase database = FirebaseDatabase.getInstance();
-            // query
-            Query ref = database.getReference("Cards").child("Probleem").orderByChild("titel");
-            getFirebaseContent(ref);
-            mAdapter.notifyDataSetChanged();
+    }
 
-        }
+    public void setsortdialog() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("sorteren op:")
+                .setItems(R.array.sortArray, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+// The 'which' argument contains the index position
+// of the selected item
+                        String[] sexArray = getResources().getStringArray(R.array.sortArray);
+                        sortvalue = sexArray[which];
+
+                        if (sortvalue.equals("tijd")){
+                            // clear the array
+                            mData.clear();
+                            // firebase
+                            FirebaseDatabase database = FirebaseDatabase.getInstance();
+                            // query
+                            Query ref = database.getReference("Cards").child("Probleem").orderByChild("inzet");
+                            getFirebaseContent(ref);
+                            mAdapter.notifyDataSetChanged();
+                        }
+                        if (sortvalue.equals("titel")){
+                            // clear the array
+                            mData.clear();
+                            // firebase
+                            FirebaseDatabase database = FirebaseDatabase.getInstance();
+                            // query
+                            Query ref = database.getReference("Cards").child("Probleem").orderByChild("onderwerp");
+                            getFirebaseContent(ref);
+                            mAdapter.notifyDataSetChanged();
+                        }
+
+                    }
+                });
+        AlertDialog sortdialog = builder.create();
+        sortdialog.show();
+
     }
 
     @Override
