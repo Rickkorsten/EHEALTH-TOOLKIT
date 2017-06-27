@@ -53,7 +53,6 @@
                 android:layout_marginBottom="-10px"
                 android:padding="12dp"
                 android:rotation="-90"
-                android:text="Conceptinggggg"
                 android:textAlignment="textEnd"
                 android:textColor="@color/white"
                 android:textSize="18dp" />
@@ -86,7 +85,7 @@
                         android:background="@color/magenta"
                         android:paddingTop="8dp"
                         android:paddingBottom="14dp"
-                        android:text="Video prototype"
+                        android:hint="Titel van je kaart"
                         android:textAlignment="center"
                         android:textColor="#fff"
                         android:textSize="30dp"
@@ -112,7 +111,7 @@
                         android:layout_marginRight="20dp"
                         android:layout_marginTop="-2dp"
                         android:fontFamily="sans-serif-light"
-                        android:text="Een video prototype maken zodat je andere een impressie kan geven"
+                        android:hint="Schrijf hier in het kort je doel neer"
                         android:textColor="@color/white"
                         android:textSize="18dp" />
 
@@ -136,7 +135,7 @@
                         android:layout_marginRight="20dp"
                         android:layout_marginTop="-2dp"
                         android:fontFamily="sans-serif-light"
-                        android:text="Je idee kunnen delen met andere en zo meer feedback krijgen"
+                        android:hint="Schrijf hier wat er bereikt kan worden met jouw kaart"
                         android:textColor="@color/white"
                         android:textSize="18dp"
                         android:layout_marginBottom="20dp"/>

@@ -1,20 +1,25 @@
 package link.fls.swipestacksample;
 
 import android.content.DialogInterface;
+import android.graphics.Typeface;
+import android.os.Build;
 import android.os.Bundle;
+import android.support.annotation.RequiresApi;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.text.InputType;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.squareup.picasso.Picasso;
 
 import models.TestModel;
 
@@ -23,10 +28,14 @@ public class addcard extends AppCompatActivity {
     EditText getdoel, getinzet, getonderwerp, gettitel, getuitvoering, geturl;
     TextView setcategorie;
     Button submit;
+    private TextView titleInhoud;
+    private LinearLayout cardlayout;
     Integer selectedSubject;
     String url, categorie;
+
     ImageButton setUrlButton;
 
+    private Typeface comfortaa;
     DatabaseReference databasekaarten;
 
     @Override
@@ -42,10 +51,16 @@ public class addcard extends AppCompatActivity {
         getdoel = (EditText) findViewById(R.id.makedoel);
         getinzet = (EditText) findViewById(R.id.makeinzet);
         getonderwerp = (EditText) findViewById(R.id.makeonderwerp);
+        gettitel = (EditText) findViewById(R.id.maketitel);
         getuitvoering = (EditText) findViewById(R.id.makeuitvoering);
-
+        geturl = (EditText) findViewById(R.id.makeurl);
 
         setcategorie = (TextView) findViewById(R.id.categorieinhoud);
+        titleInhoud = (TextView) findViewById(R.id.titelinhoud);
+        cardlayout = (LinearLayout) findViewById(R.id.cardlayout);
+        comfortaa = Typeface.createFromAsset(getAssets(), "fonts/Comfortaa-Regular.ttf");
+        titleInhoud.setTypeface(comfortaa);
+        setcategorie.setTypeface(comfortaa);
 
         submit = (Button) findViewById(R.id.submitcard);
         setUrlButton = (ImageButton) findViewById(R.id.addUrlButton);
@@ -63,8 +78,9 @@ public class addcard extends AppCompatActivity {
                 String Agetdoel = getdoel.getText().toString();
                 String Agetinzet = getinzet.getText().toString();
                 String Agetonderwerp = getonderwerp.getText().toString();
+                String Agettitel = gettitel.getText().toString();
                 String Agetuitvoering = getuitvoering.getText().toString();
-
+                String Ageturl = geturl.getText().toString();
 
                 Boolean truefalse = true;
 
@@ -79,11 +95,13 @@ public class addcard extends AppCompatActivity {
                 if (Agetonderwerp.matches("")) {
                     truefalse = false;
                 }
-
+                if (Agettitel.matches("")) {
+                    truefalse = false;
+                }
                 if (Agetuitvoering.matches("")) {
                     truefalse = false;
                 }
-                if (url.matches("")) {
+                if (Ageturl.matches("")) {
                     truefalse = false;
                 }
 
@@ -92,7 +110,7 @@ public class addcard extends AppCompatActivity {
                 } else {
 
                     String id = databasekaarten.push().getKey();
-                    TestModel testmodel = new TestModel(Agetdoel, Agetinzet, Agetonderwerp, categorie, Agetuitvoering, url);
+                    TestModel testmodel = new TestModel(Agetdoel, Agetinzet, Agetonderwerp, Agettitel, Agetuitvoering, Ageturl);
 
                     databasekaarten.child(id).setValue(testmodel);
 
@@ -111,12 +129,15 @@ public class addcard extends AppCompatActivity {
         input.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
         builder.setView(input);
 // Add action buttons
-                builder.setPositiveButton("accept", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int id) {
-                        url = input.getText().toString();
-                    }
-                });
+        builder.setPositiveButton("accept", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int id) {
+                url = input.getText().toString();
+                Toast.makeText(getBaseContext(), url, Toast.LENGTH_LONG).show();
+                ImageView image = (ImageView) findViewById(R.id.cardImage);
+                Picasso.with(getBaseContext()).load(url).into(image);
+            }
+        });
         AlertDialog chooseSubject = builder.create();
         chooseSubject.show();
     }
@@ -125,12 +146,24 @@ public class addcard extends AppCompatActivity {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle(R.string.dialogtitle)
                 .setItems(R.array.subjectArray, new DialogInterface.OnClickListener() {
+                    @RequiresApi(api = Build.VERSION_CODES.M)
                     public void onClick(DialogInterface dialog, int which) {
-// The 'which' argument contains the index position
-// of the selected item
+                        // The 'which' argument contains the index position
+                        // of the selected item
                         String[] sexArray = getResources().getStringArray(R.array.subjectArray);
                         setcategorie.setText(sexArray[which]);
-                        categorie = sexArray[which];
+                        if (sexArray[which].equals("Prototype")) {
+                            titleInhoud.setBackgroundColor(getColor(R.color.green));
+                            cardlayout.setBackgroundColor(getColor(R.color.greenL));
+                        }
+                        if (sexArray[which].equals("Concepting")) {
+                            titleInhoud.setBackgroundColor(getColor(R.color.blue));
+                            cardlayout.setBackgroundColor(getColor(R.color.blueL));
+                        }
+                        if (sexArray[which].equals("Probleem")) {
+                            titleInhoud.setBackgroundColor(getColor(R.color.magenta));
+                            cardlayout.setBackgroundColor(getColor(R.color.magentaL));
+                        }
 
                     }
                 });
