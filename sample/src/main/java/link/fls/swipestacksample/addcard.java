@@ -1,20 +1,25 @@
 package link.fls.swipestacksample;
 
 import android.content.DialogInterface;
+import android.graphics.Typeface;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.RequiresApi;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.text.InputType;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.squareup.picasso.Picasso;
 
 import models.TestModel;
 
@@ -27,6 +32,7 @@ public class addcard extends AppCompatActivity {
     private LinearLayout cardlayout;
     Integer selectedSubject;
     String url, categorie;
+
     ImageButton setUrlButton;
 
     private Typeface comfortaa;
@@ -123,12 +129,15 @@ public class addcard extends AppCompatActivity {
         input.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
         builder.setView(input);
 // Add action buttons
-                builder.setPositiveButton("accept", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int id) {
-                        url = input.getText().toString();
-                    }
-                });
+        builder.setPositiveButton("accept", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int id) {
+                url = input.getText().toString();
+                Toast.makeText(getBaseContext(), url, Toast.LENGTH_LONG).show();
+                ImageView image = (ImageView) findViewById(R.id.cardImage);
+                Picasso.with(getBaseContext()).load(url).into(image);
+            }
+        });
         AlertDialog chooseSubject = builder.create();
         chooseSubject.show();
     }
@@ -142,15 +151,16 @@ public class addcard extends AppCompatActivity {
                         // The 'which' argument contains the index position
                         // of the selected item
                         String[] sexArray = getResources().getStringArray(R.array.subjectArray);
-                        Toast.makeText(getBaseContext(), sexArray[which], Toast.LENGTH_LONG).show();
                         setcategorie.setText(sexArray[which]);
-                        if(sexArray[which].equals("Prototype")){
+                        if (sexArray[which].equals("Prototype")) {
                             titleInhoud.setBackgroundColor(getColor(R.color.green));
                             cardlayout.setBackgroundColor(getColor(R.color.greenL));
-                        } if(sexArray[which].equals("Concepting")){
+                        }
+                        if (sexArray[which].equals("Concepting")) {
                             titleInhoud.setBackgroundColor(getColor(R.color.blue));
                             cardlayout.setBackgroundColor(getColor(R.color.blueL));
-                        } if(sexArray[which].equals("Probleem")){
+                        }
+                        if (sexArray[which].equals("Probleem")) {
                             titleInhoud.setBackgroundColor(getColor(R.color.magenta));
                             cardlayout.setBackgroundColor(getColor(R.color.magentaL));
                         }
