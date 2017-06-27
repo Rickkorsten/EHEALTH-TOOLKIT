@@ -79,42 +79,12 @@
         android:id="@+id/swipeStack"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_above="@+id/fabAdd"
         android:layout_below="@id/topButtons"
         android:layout_marginTop="-14dp"
         android:layout_marginBottom="10dp"
         android:padding="28dp"
         app:stack_rotation="0"
         app:stack_size="3" />
-
-    <android.support.v7.widget.ButtonBarLayout
-        android:id="@+id/fabAdd"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_gravity="bottom|center"
-        android:layout_marginBottom="3dp"
-        android:src="@drawable/ic_content_add"
-        android:weightSum="2"
-        app:fabSize="normal">
-
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/ic_search_black_24dp" />
-
-        <TextView
-            android:id="@+id/textView4"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_marginLeft="4dp"
-            android:gravity="center_vertical"
-            android:text="Bekijk Kaart!"
-            android:textColor="@color/white"
-            android:textSize="25dp" />
-
-    </android.support.v7.widget.ButtonBarLayout>
 
 
 </RelativeLayout>

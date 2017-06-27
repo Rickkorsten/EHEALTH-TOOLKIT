@@ -28,6 +28,7 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.ButtonBarLayout;
 import android.support.v7.widget.CardView;
+import android.support.v7.widget.SearchView;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -39,6 +40,7 @@ import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -87,13 +89,11 @@ public class MainActivity extends AppCompatActivity implements SwipeStack.SwipeS
 
         //load views
         mSwipeStack = (SwipeStack) findViewById(R.id.swipeStack);
-        mFab = (ButtonBarLayout) findViewById(R.id.fabAdd);
         sortbtn = (Button) findViewById(R.id.sort);
-        //cardviewcard = (CardView)findViewById(R.id.cardviewcard);
 
         // set clicks
-        mFab.setOnClickListener(this);
         sortbtn.setOnClickListener(this);
+
         // set adapter
         mAdapter = new SwipeStackAdapter(mData);
         mSwipeStack.setAdapter(mAdapter);
@@ -183,49 +183,17 @@ public class MainActivity extends AppCompatActivity implements SwipeStack.SwipeS
     }
 
     @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.main, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-
-        switch (item.getItemId()) {
-            case R.id.menuReset:
-                mSwipeStack.resetStack();
-                //Snackbar.make(mFab, R.string.stack_reset, Snackbar.LENGTH_SHORT).show();
-                return true;
-            case R.id.menuGitHub:
-                Intent browserIntent = new Intent(
-                        Intent.ACTION_VIEW, Uri.parse("https://github.com/flschweiger/SwipeStack"));
-                startActivity(browserIntent);
-                return true;
-        }
-
-        return super.onOptionsItemSelected(item);
-    }
-
-
-    @Override
     public void onViewSwipedToRight(int position) {
-        TestModel swipedElement = mAdapter.getItem(position);
-        String data = mData.get(position).getDoel();
-        Toast.makeText(this, getString(R.string.view_swiped_right, data),
-                Toast.LENGTH_SHORT).show();
+
     }
 
     @Override
     public void onViewSwipedToLeft(int position) {
-        TestModel swipedElement = mAdapter.getItem(position);
-        Toast.makeText(this, getString(R.string.view_swiped_left, swipedElement),
-                Toast.LENGTH_SHORT).show();
+
     }
 
     @Override
     public void onStackEmpty() {
-        Toast.makeText(this, R.string.stack_empty, Toast.LENGTH_SHORT).show();
     }
 
     //////////// SWIPE STACKADAPTER CLASS //////////////////
@@ -271,7 +239,7 @@ public class MainActivity extends AppCompatActivity implements SwipeStack.SwipeS
             // get titel
             String title = mData.get(position).getTitel();
             TextView textViewTitel = (TextView) convertView.findViewById(R.id.categorieinhoud);
-            LinearLayout kaartcontent = (LinearLayout) convertView.findViewById(R.id.kaartcontent);
+            RelativeLayout kaartcontent = (RelativeLayout) convertView.findViewById(R.id.kaartcontent);
             textViewTitel.setTypeface(comfortaa);
             textViewTitel.setText(title);
             if (title.equals("Probleem")) {
@@ -291,8 +259,20 @@ public class MainActivity extends AppCompatActivity implements SwipeStack.SwipeS
             ImageView image = (ImageView) convertView.findViewById(R.id.cardImage);
             fotoURL = mData.get(position).geturl();
             Picasso.with(getBaseContext()).load(fotoURL).into(image);
+
+            //Click card
+            convertView.findViewById(R.id.btnbekijk).setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Toast.makeText(getBaseContext(), mData.get(position).getOnderwerp(), Toast.LENGTH_LONG).show();
+                }
+            });
+
             return convertView;
 
         }
+
+
     }
+
 }
