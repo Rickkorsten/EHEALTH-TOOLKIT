@@ -233,7 +233,7 @@ public class MainActivity extends AppCompatActivity implements SwipeStack.SwipeS
             TextView textViewInzet = (TextView) convertView.findViewById(R.id.inzetinhoud);
             textViewInzet.setText(mData.get(position).getInzet());
             // get onderwerp
-            TextView textViewOnderwerp = (TextView) convertView.findViewById(R.id.titelinhoud);
+            final TextView textViewOnderwerp = (TextView) convertView.findViewById(R.id.titelinhoud);
             textViewOnderwerp.setTypeface(comfortaa);
             textViewOnderwerp.setText(mData.get(position).getOnderwerp());
             // get titel
@@ -264,7 +264,14 @@ public class MainActivity extends AppCompatActivity implements SwipeStack.SwipeS
             convertView.findViewById(R.id.btnbekijk).setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    Toast.makeText(getBaseContext(), mData.get(position).getOnderwerp(), Toast.LENGTH_LONG).show();
+                    Intent intent = new Intent(getBaseContext(), CardViewActivity.class);
+                    intent.putExtra("ONDERWERP", mData.get(position).getOnderwerp());
+                    intent.putExtra("TITLE", mData.get(position).getTitel());
+                    intent.putExtra("DOEL", mData.get(position).getDoel());
+                    intent.putExtra("UITKOMST", mData.get(position).getUitvoering());
+                    intent.putExtra("INZET", mData.get(position).getInzet());
+                    intent.putExtra("URL", mData.get(position).geturl());
+                    startActivity(intent);
                 }
             });
 

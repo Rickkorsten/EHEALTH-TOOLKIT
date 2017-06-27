@@ -14,48 +14,55 @@
     <ImageView
         android:id="@+id/cardImage"
         android:layout_width="match_parent"
-        android:layout_height="250dp"
-        android:contentDescription="fOTO"
-        android:src="@color/blue">
-
-    </ImageView>
+        android:layout_height="220dp"
+        android:scaleType="centerCrop"
+        android:src="#444" />
 
     <TextView
         android:id="@+id/categorieinhoud"
-        android:layout_width="wrap_content"
-        android:layout_height="123dp"
+        android:layout_width="360dp"
+        android:layout_height="370dp"
         android:layout_marginBottom="-10px"
+        android:padding="12dp"
         android:rotation="-90"
-        android:text="Concepting"
-        android:textColor="@color/black"
-        android:textSize="45px" />
+        android:text="Conceptinggggg"
+        android:textAlignment="textEnd"
+        android:textColor="@color/white"
+        android:textSize="18dp" />
 
     <TextView
-        android:id="@+id/titelinhoud"
-        style="?android:textAppearanceSmall"
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:padding="10dp"
-        android:layout_marginTop="250dp"
-        android:background="@color/white"
-        android:lineSpacingMultiplier="1.2"
-        android:text="Video prototype"
-        android:textAlignment="center"
-        android:textColor="#fff"
-        android:textSize="30dp"
-        android:textStyle="normal"
-        android:backgroundTint="@color/magenta"/>
+        android:id="@+id/inzetinhoud"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="2"
+        android:textColor="@color/black"
+        android:textSize="18dp"
+        android:visibility="gone" />
 
     <RelativeLayout
+        android:id="@+id/kaartcontent"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="310dp">
+        android:background="@color/magentaL"
+        android:layout_marginTop="200dp">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:background="@color/magentaL">
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/titelinhoud"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/magenta"
+                android:paddingBottom="14dp"
+                android:paddingTop="8dp"
+                android:text="Video prototype"
+                android:textAlignment="center"
+                android:textColor="#fff"
+                android:textSize="30dp"
+                android:textStyle="normal" />
 
             <TextView
                 android:id="@+id/textView3"
@@ -63,10 +70,10 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp"
-                android:layout_marginTop="15dp"
-                android:layout_weight="1"
+                android:layout_marginTop="10dp"
+                android:fontFamily="sans-serif-light"
                 android:text="Doel"
-                android:textColor="@color/black"
+                android:textColor="#444"
                 android:textSize="22dp" />
 
             <TextView
@@ -75,11 +82,11 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp"
-                android:layout_marginTop="-26dp"
-                android:layout_weight="1"
+                android:layout_marginTop="-2dp"
+                android:fontFamily="sans-serif-light"
                 android:text="Een video prototype maken zodat je andere een impressie kan geven"
                 android:textColor="@color/white"
-                android:textSize="18dp" />
+                android:textSize="17dp" />
 
             <TextView
                 android:id="@+id/textView5"
@@ -87,9 +94,10 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp"
-                android:layout_weight="1"
+                android:layout_marginTop="12dp"
+                android:fontFamily="sans-serif-light"
                 android:text="Uitkomst"
-                android:textColor="@color/black"
+                android:textColor="#444"
                 android:textSize="22dp" />
 
             <TextView
@@ -98,20 +106,14 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp"
-                android:layout_marginTop="-26dp"
-                android:layout_weight="1"
+                android:layout_marginTop="-2dp"
+                android:fontFamily="sans-serif-light"
                 android:text="Je idee kunnen delen met andere en zo meer feedback krijgen"
                 android:textColor="@color/white"
-                android:textSize="18dp" />
+                android:textSize="17dp" />
+
         </LinearLayout>
 
-        <TextView
-            android:id="@+id/inzetinhoud"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="2"
-            android:textColor="@color/black"
-            android:textSize="18dp" />
     </RelativeLayout>
 
 </android.support.v7.widget.CardView>
