@@ -1,15 +1,14 @@
 package link.fls.swipestacksample;
 
 import android.content.DialogInterface;
-import android.os.Build;
 import android.os.Bundle;
-import android.support.annotation.RequiresApi;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.LinearLayout;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -23,9 +22,9 @@ public class addcard extends AppCompatActivity {
     EditText getdoel, getinzet, getonderwerp, gettitel, getuitvoering, geturl;
     TextView setcategorie;
     Button submit;
-    private TextView titleInhoud;
-    private LinearLayout cardlayout;
     Integer selectedSubject;
+    String url, categorie;
+    ImageButton setUrlButton;
 
     DatabaseReference databasekaarten;
 
@@ -47,10 +46,16 @@ public class addcard extends AppCompatActivity {
         geturl = (EditText) findViewById(R.id.makeurl);
 
         setcategorie = (TextView) findViewById(R.id.categorieinhoud);
-        titleInhoud = (TextView) findViewById(R.id.titelinhoud);
-        cardlayout = (LinearLayout) findViewById(R.id.cardlayout);
 
         submit = (Button) findViewById(R.id.submitcard);
+        setUrlButton = (ImageButton) findViewById(R.id.addUrlButton);
+
+        setUrlButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Urldialog();
+            }
+        });
 
         submit.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -58,9 +63,8 @@ public class addcard extends AppCompatActivity {
                 String Agetdoel = getdoel.getText().toString();
                 String Agetinzet = getinzet.getText().toString();
                 String Agetonderwerp = getonderwerp.getText().toString();
-                String Agettitel = gettitel.getText().toString();
                 String Agetuitvoering = getuitvoering.getText().toString();
-                String Ageturl = geturl.getText().toString();
+
 
                 Boolean truefalse = true;
 
@@ -75,13 +79,11 @@ public class addcard extends AppCompatActivity {
                 if (Agetonderwerp.matches("")) {
                     truefalse = false;
                 }
-                if (Agettitel.matches("")) {
-                    truefalse = false;
-                }
+
                 if (Agetuitvoering.matches("")) {
                     truefalse = false;
                 }
-                if (Ageturl.matches("")) {
+                if (url.matches("")) {
                     truefalse = false;
                 }
 
@@ -90,7 +92,7 @@ public class addcard extends AppCompatActivity {
                 } else {
 
                     String id = databasekaarten.push().getKey();
-                    TestModel testmodel = new TestModel(Agetdoel, Agetinzet, Agetonderwerp, Agettitel, Agetuitvoering, Ageturl);
+                    TestModel testmodel = new TestModel(Agetdoel, Agetinzet, Agetonderwerp, categorie, Agetuitvoering, url);
 
                     databasekaarten.child(id).setValue(testmodel);
 
@@ -100,27 +102,37 @@ public class addcard extends AppCompatActivity {
         });
     }
 
+    private void Urldialog() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+// Get the layout inflater
+        LayoutInflater inflater = this.getLayoutInflater();
+
+// Inflate and set the layout for the dialog
+// Pass null as the parent view because its going in the dialog layout
+        builder.setView(inflater.inflate(R.layout.dialogurl, null))
+// Add action buttons
+                .setPositiveButton("accept", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int id) {
+
+                        EditText geturl = (EditText)findViewById(R.id.url);
+                        url = geturl.getText().toString();
+                    }
+                });
+        AlertDialog chooseSubject = builder.create();
+        chooseSubject.show();
+    }
+
     public void setdialog() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle(R.string.dialogtitle)
                 .setItems(R.array.subjectArray, new DialogInterface.OnClickListener() {
-                    @RequiresApi(api = Build.VERSION_CODES.M)
                     public void onClick(DialogInterface dialog, int which) {
-                        // The 'which' argument contains the index position
-                        // of the selected item
+// The 'which' argument contains the index position
+// of the selected item
                         String[] sexArray = getResources().getStringArray(R.array.subjectArray);
-                        Toast.makeText(getBaseContext(), sexArray[which], Toast.LENGTH_LONG).show();
                         setcategorie.setText(sexArray[which]);
-                        if(sexArray[which].equals("Prototype")){
-                            titleInhoud.setBackgroundColor(getColor(R.color.green));
-                            cardlayout.setBackgroundColor(getColor(R.color.greenL));
-                        } if(sexArray[which].equals("Concepting")){
-                            titleInhoud.setBackgroundColor(getColor(R.color.blue));
-                            cardlayout.setBackgroundColor(getColor(R.color.blueL));
-                        } if(sexArray[which].equals("Probleem")){
-                            titleInhoud.setBackgroundColor(getColor(R.color.magenta));
-                            cardlayout.setBackgroundColor(getColor(R.color.magentaL));
-                        }
+                        categorie = sexArray[which];
 
                     }
                 });
