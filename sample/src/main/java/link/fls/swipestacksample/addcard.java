@@ -1,7 +1,6 @@
 package link.fls.swipestacksample;
 
 import android.content.DialogInterface;
-import android.graphics.Typeface;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.RequiresApi;
@@ -27,6 +26,9 @@ public class addcard extends AppCompatActivity {
     private TextView titleInhoud;
     private LinearLayout cardlayout;
     Integer selectedSubject;
+    String url, categorie;
+    ImageButton setUrlButton;
+
     private Typeface comfortaa;
     DatabaseReference databasekaarten;
 
@@ -55,6 +57,14 @@ public class addcard extends AppCompatActivity {
         setcategorie.setTypeface(comfortaa);
 
         submit = (Button) findViewById(R.id.submitcard);
+        setUrlButton = (ImageButton) findViewById(R.id.addUrlButton);
+
+        setUrlButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Urldialog();
+            }
+        });
 
         submit.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -102,6 +112,25 @@ public class addcard extends AppCompatActivity {
                 }
             }
         });
+    }
+
+    private void Urldialog() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("set URL");
+// Get the layout inflater
+        final EditText input = new EditText(this);
+
+        input.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
+        builder.setView(input);
+// Add action buttons
+                builder.setPositiveButton("accept", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int id) {
+                        url = input.getText().toString();
+                    }
+                });
+        AlertDialog chooseSubject = builder.create();
+        chooseSubject.show();
     }
 
     public void setdialog() {
