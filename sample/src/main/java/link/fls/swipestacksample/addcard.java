@@ -1,12 +1,15 @@
 package link.fls.swipestacksample;
 
 import android.content.DialogInterface;
+import android.os.Build;
 import android.os.Bundle;
+import android.support.annotation.RequiresApi;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -20,6 +23,8 @@ public class addcard extends AppCompatActivity {
     EditText getdoel, getinzet, getonderwerp, gettitel, getuitvoering, geturl;
     TextView setcategorie;
     Button submit;
+    private TextView titleInhoud;
+    private LinearLayout cardlayout;
     Integer selectedSubject;
 
     DatabaseReference databasekaarten;
@@ -41,7 +46,9 @@ public class addcard extends AppCompatActivity {
         getuitvoering = (EditText) findViewById(R.id.makeuitvoering);
         geturl = (EditText) findViewById(R.id.makeurl);
 
-        setcategorie = (TextView)findViewById(R.id.categorieinhoud);
+        setcategorie = (TextView) findViewById(R.id.categorieinhoud);
+        titleInhoud = (TextView) findViewById(R.id.titelinhoud);
+        cardlayout = (LinearLayout) findViewById(R.id.cardlayout);
 
         submit = (Button) findViewById(R.id.submitcard);
 
@@ -97,11 +104,23 @@ public class addcard extends AppCompatActivity {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle(R.string.dialogtitle)
                 .setItems(R.array.subjectArray, new DialogInterface.OnClickListener() {
+                    @RequiresApi(api = Build.VERSION_CODES.M)
                     public void onClick(DialogInterface dialog, int which) {
-// The 'which' argument contains the index position
-// of the selected item
-                        String[] sexArray =  getResources().getStringArray(R.array.subjectArray);
+                        // The 'which' argument contains the index position
+                        // of the selected item
+                        String[] sexArray = getResources().getStringArray(R.array.subjectArray);
+                        Toast.makeText(getBaseContext(), sexArray[which], Toast.LENGTH_LONG).show();
                         setcategorie.setText(sexArray[which]);
+                        if(sexArray[which].equals("Prototype")){
+                            titleInhoud.setBackgroundColor(getColor(R.color.green));
+                            cardlayout.setBackgroundColor(getColor(R.color.greenL));
+                        } if(sexArray[which].equals("Concepting")){
+                            titleInhoud.setBackgroundColor(getColor(R.color.blue));
+                            cardlayout.setBackgroundColor(getColor(R.color.blueL));
+                        } if(sexArray[which].equals("Probleem")){
+                            titleInhoud.setBackgroundColor(getColor(R.color.magenta));
+                            cardlayout.setBackgroundColor(getColor(R.color.magentaL));
+                        }
 
                     }
                 });
