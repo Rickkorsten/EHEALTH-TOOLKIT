@@ -1,13 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:clipChildren="false"
     android:background="@drawable/gradback"
+    android:clipChildren="false"
+    android:fitsSystemWindows="true"
     tools:context="link.fls.swipestacksample.MainActivity">
+
+    <TableLayout
+        android:id="@+id/topButtons"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:stretchColumns="0,1"
+        >
+
+        <TableRow
+            android:layout_width="match_parent"
+            >
+
+            <Button
+                android:id="@+id/categorieKies"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Categorie"
+                android:backgroundTint="@color/blueL"/>
+
+            <Button
+                android:id="@+id/sort"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Sorteren:"
+                android:backgroundTint="#999"/>
+        </TableRow>
+    </TableLayout>
 
     <Button
         android:id="@+id/button2"
@@ -15,25 +42,28 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:enabled="false"
-        android:text="Sort by:" />
+        android:text="Sort by:"
+        android:visibility="gone" />
 
     <Button
         android:id="@+id/sorttime"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Time"
         android:layout_alignParentTop="true"
+        android:layout_toEndOf="@+id/sortbysubject"
         android:layout_toRightOf="@+id/sortbysubject"
-        android:layout_toEndOf="@+id/sortbysubject" />
+        android:text="Time"
+        android:visibility="gone" />
 
     <Button
         android:id="@+id/sortbysubject"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Subject"
         android:layout_alignParentTop="true"
+        android:layout_toEndOf="@+id/button2"
         android:layout_toRightOf="@+id/button2"
-        android:layout_toEndOf="@+id/button2" />
+        android:text="Subject"
+        android:visibility="gone" />
 
     <Button
         android:id="@+id/sortbytitle"
@@ -42,36 +72,37 @@
         android:layout_alignBottom="@+id/sorttime"
         android:layout_toEndOf="@+id/sorttime"
         android:layout_toRightOf="@+id/sorttime"
-        android:text="title" />
+        android:text="title"
+        android:visibility="gone" />
 
     <link.fls.swipestack.SwipeStack
         android:id="@+id/swipeStack"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/sortbytitle"
         android:layout_above="@+id/fabAdd"
+        android:layout_below="@id/topButtons"
+        android:layout_marginTop="-14dp"
+        android:layout_marginBottom="10dp"
         android:padding="28dp"
         app:stack_rotation="0"
-        app:stack_size="3"
-        />
+        app:stack_size="3" />
 
     <android.support.v7.widget.ButtonBarLayout
-            android:id="@+id/fabAdd"
-            android:layout_marginBottom="3dp"
+        android:id="@+id/fabAdd"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_gravity="bottom|center"
+        android:layout_marginBottom="3dp"
+        android:src="@drawable/ic_content_add"
+        android:weightSum="2"
+        app:fabSize="normal">
+
+        <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="bottom|center"
-            android:src="@drawable/ic_content_add"
-            app:fabSize="normal"
-            android:layout_alignParentBottom="true"
-            android:layout_centerHorizontal="true"
-            android:weightSum="2">
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/ic_search_black_24dp"
-                />
+            android:src="@drawable/ic_search_black_24dp" />
 
         <TextView
             android:id="@+id/textView4"
@@ -84,8 +115,6 @@
             android:textSize="25dp" />
 
     </android.support.v7.widget.ButtonBarLayout>
-
-
 
 
 </RelativeLayout>

@@ -37,7 +37,7 @@
         android:text="2"
         android:textColor="@color/black"
         android:textSize="18dp"
-        android:visibility="gone"/>
+        android:visibility="gone" />
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -45,6 +45,7 @@
         android:layout_marginTop="200dp">
 
         <LinearLayout
+            android:id="@+id/kaartcontent"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@color/magentaL"
@@ -54,10 +55,9 @@
                 android:id="@+id/titelinhoud"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@color/white"
-                android:backgroundTint="@color/magenta"
-                android:paddingTop="8dp"
+                android:background="@color/magenta"
                 android:paddingBottom="14dp"
+                android:paddingTop="8dp"
                 android:text="Video prototype"
                 android:textAlignment="center"
                 android:textColor="#fff"

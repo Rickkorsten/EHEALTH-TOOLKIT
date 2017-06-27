@@ -31,10 +31,12 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -102,9 +104,7 @@ public class MainActivity extends AppCompatActivity implements SwipeStack.SwipeS
 
     }
 
-
-
-public void getFirebaseContent(Query ref){
+    public void getFirebaseContent(Query ref) {
         ref.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -112,12 +112,11 @@ public void getFirebaseContent(Query ref){
                 for (DataSnapshot postSnapshot : dataSnapshot.getChildren()) {
                     //Getting the data from snapshot
                     final HashMap<String, Object> row = (HashMap<String, Object>) postSnapshot.getValue();
-                   // mData.add(new TestModel((String )row.get("doel"), (String) row.get("inzet"),(String)row.get("onderwerp"),(String)row.get("titel"),(String)row.get("uitvoering")));
+                    // mData.add(new TestModel((String )row.get("doel"), (String) row.get("inzet"),(String)row.get("onderwerp"),(String)row.get("titel"),(String)row.get("uitvoering")));
                     mData.add((TestModel) postSnapshot.getValue(TestModel.class));
                     mAdapter.notifyDataSetChanged();
 
                 }
-
 
 
             }
@@ -133,7 +132,7 @@ public void getFirebaseContent(Query ref){
 
     @Override
     public void onClick(View v) {
-         if (v.equals(mFab)) {
+        if (v.equals(mFab)) {
 
 
             startActivity(new Intent(MainActivity.this, CardViewActivity.class));
@@ -265,11 +264,18 @@ public void getFirebaseContent(Query ref){
             // get titel
             String title = mData.get(position).getTitel();
             TextView textViewTitel = (TextView) convertView.findViewById(R.id.categorieinhoud);
+            LinearLayout kaartcontent = (LinearLayout) convertView.findViewById(R.id.kaartcontent);
             textViewTitel.setTypeface(comfortaa);
             textViewTitel.setText(title);
-            if (title == "Probleem"){
+            if (title.equals("Probleem")) {
+                kaartcontent.setBackgroundColor(getColor(R.color.magentaL));
+                textViewOnderwerp.setBackgroundColor(getColor(R.color.magenta));
+            } else if (title.equals("Concepting")) {
+                kaartcontent.setBackgroundColor(getColor(R.color.blueL));
                 textViewOnderwerp.setBackgroundColor(getColor(R.color.blue));
-                Toast.makeText(getBaseContext(), title, Toast.LENGTH_LONG).show();
+            } else if (title.equals("Prototype")) {
+                kaartcontent.setBackgroundColor(getColor(R.color.greenL));
+                textViewOnderwerp.setBackgroundColor(getColor(R.color.green));
             }
             // get uitvoering
             TextView textViewUitvoering = (TextView) convertView.findViewById(R.id.uitvoeringinhoud);
