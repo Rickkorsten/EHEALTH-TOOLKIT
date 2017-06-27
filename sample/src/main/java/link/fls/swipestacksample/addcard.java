@@ -4,6 +4,7 @@ import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.text.InputType;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
@@ -41,9 +42,8 @@ public class addcard extends AppCompatActivity {
         getdoel = (EditText) findViewById(R.id.makedoel);
         getinzet = (EditText) findViewById(R.id.makeinzet);
         getonderwerp = (EditText) findViewById(R.id.makeonderwerp);
-        gettitel = (EditText) findViewById(R.id.maketitel);
         getuitvoering = (EditText) findViewById(R.id.makeuitvoering);
-        geturl = (EditText) findViewById(R.id.makeurl);
+
 
         setcategorie = (TextView) findViewById(R.id.categorieinhoud);
 
@@ -104,19 +104,17 @@ public class addcard extends AppCompatActivity {
 
     private void Urldialog() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("set URL");
 // Get the layout inflater
-        LayoutInflater inflater = this.getLayoutInflater();
+        final EditText input = new EditText(this);
 
-// Inflate and set the layout for the dialog
-// Pass null as the parent view because its going in the dialog layout
-        builder.setView(inflater.inflate(R.layout.dialogurl, null))
+        input.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
+        builder.setView(input);
 // Add action buttons
-                .setPositiveButton("accept", new DialogInterface.OnClickListener() {
+                builder.setPositiveButton("accept", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int id) {
-
-                        EditText geturl = (EditText)findViewById(R.id.url);
-                        url = geturl.getText().toString();
+                        url = input.getText().toString();
                     }
                 });
         AlertDialog chooseSubject = builder.create();
