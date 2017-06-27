@@ -1,6 +1,7 @@
 package link.fls.swipestacksample;
 
 import android.content.DialogInterface;
+import android.graphics.Typeface;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.RequiresApi;
@@ -26,7 +27,7 @@ public class addcard extends AppCompatActivity {
     private TextView titleInhoud;
     private LinearLayout cardlayout;
     Integer selectedSubject;
-
+    private Typeface comfortaa;
     DatabaseReference databasekaarten;
 
     @Override
@@ -49,6 +50,9 @@ public class addcard extends AppCompatActivity {
         setcategorie = (TextView) findViewById(R.id.categorieinhoud);
         titleInhoud = (TextView) findViewById(R.id.titelinhoud);
         cardlayout = (LinearLayout) findViewById(R.id.cardlayout);
+        comfortaa = Typeface.createFromAsset(getAssets(), "fonts/Comfortaa-Regular.ttf");
+        titleInhoud.setTypeface(comfortaa);
+        setcategorie.setTypeface(comfortaa);
 
         submit = (Button) findViewById(R.id.submitcard);
 
