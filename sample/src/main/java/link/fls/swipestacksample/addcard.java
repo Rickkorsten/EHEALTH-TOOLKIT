@@ -1,23 +1,26 @@
 package link.fls.swipestacksample;
 
-import android.support.constraint.solver.widgets.Snapshot;
-import android.support.v7.app.AppCompatActivity;
+import android.content.DialogInterface;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.Query;
 
 import models.TestModel;
 
 public class addcard extends AppCompatActivity {
 
     EditText getdoel, getinzet, getonderwerp, gettitel, getuitvoering, geturl;
+    TextView setcategorie;
     Button submit;
+    Integer selectedSubject;
 
     DatabaseReference databasekaarten;
 
@@ -25,17 +28,22 @@ public class addcard extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_addcard);
+        // show dialog
+        setdialog();
+
         // get from firebase
         databasekaarten = FirebaseDatabase.getInstance().getReference("Cards");
 
-        getdoel   = (EditText)findViewById(R.id.makedoel);
-        getinzet   = (EditText)findViewById(R.id.makeinzet);
-        getonderwerp   = (EditText)findViewById(R.id.makeonderwerp);
-        gettitel   = (EditText)findViewById(R.id.maketitel);
-        getuitvoering   = (EditText)findViewById(R.id.makeuitvoering);
-        geturl   = (EditText)findViewById(R.id.makeurl);
+        getdoel = (EditText) findViewById(R.id.makedoel);
+        getinzet = (EditText) findViewById(R.id.makeinzet);
+        getonderwerp = (EditText) findViewById(R.id.makeonderwerp);
+        gettitel = (EditText) findViewById(R.id.maketitel);
+        getuitvoering = (EditText) findViewById(R.id.makeuitvoering);
+        geturl = (EditText) findViewById(R.id.makeurl);
 
-        submit = (Button)findViewById(R.id.submitcard);
+        setcategorie = (TextView)findViewById(R.id.categorieinhoud);
+
+        submit = (Button) findViewById(R.id.submitcard);
 
         submit.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -72,10 +80,10 @@ public class addcard extends AppCompatActivity {
 
                 if (!truefalse) {
                     Toast.makeText(getApplicationContext(), "Een of meerdere velden zijn niet ingevuld", Toast.LENGTH_SHORT).show();
-                }else{
+                } else {
 
                     String id = databasekaarten.push().getKey();
-                    TestModel testmodel = new TestModel(Agetdoel,Agetinzet,Agetonderwerp,Agettitel,Agetuitvoering,Ageturl);
+                    TestModel testmodel = new TestModel(Agetdoel, Agetinzet, Agetonderwerp, Agettitel, Agetuitvoering, Ageturl);
 
                     databasekaarten.child(id).setValue(testmodel);
 
@@ -85,5 +93,21 @@ public class addcard extends AppCompatActivity {
         });
     }
 
+    public void setdialog() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle(R.string.dialogtitle)
+                .setItems(R.array.subjectArray, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+// The 'which' argument contains the index position
+// of the selected item
+                        String[] sexArray =  getResources().getStringArray(R.array.subjectArray);
+                        setcategorie.setText(sexArray[which]);
 
+                    }
+                });
+        AlertDialog chooseSubject = builder.create();
+        chooseSubject.show();
+
+    }
 }
+

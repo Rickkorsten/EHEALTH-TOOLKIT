@@ -17,4 +17,16 @@
     <string name="next">NEXT</string>    
     <string name="skip">SKIP</string>
     <string name="start">GOT IT</string>
+    <string name="dialogtitle">Kies een Categorie</string>
+
+       
+    <string-array name="subjectArray">
+               
+        <item>Probleem</item>
+        <item>Idee</item>
+        <item>Prototype</item>
+        <item>Concepting</item>
+           
+    </string-array>
+
 </resources>
