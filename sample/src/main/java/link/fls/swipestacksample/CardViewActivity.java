@@ -1,5 +1,6 @@
 package link.fls.swipestacksample;
 
+import android.content.Context;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Build;
@@ -93,39 +94,49 @@ public class CardViewActivity extends AppCompatActivity {
             View V = inflater.inflate(R.layout.card_back, container, false);
 
             String doel = getActivity().getIntent().getStringExtra("DOEL");
+            String onderwerp =  getActivity().getIntent().getStringExtra("ONDERWERP");
+            String title =  getActivity().getIntent().getStringExtra("TITLE");
+            String uitkomst =  getActivity().getIntent().getStringExtra("UITKOMST");
+            String inzet =  getActivity().getIntent().getStringExtra("INZET");
+            String url =  getActivity().getIntent().getStringExtra("URL");
+
+            Typeface comfortaa = Typeface.createFromAsset(getActivity().getAssets(), "fonts/Comfortaa-Regular.ttf");
 
             // get doel
             TextView textViewDoel = (TextView) V.findViewById(R.id.doelinhoud);
             textViewDoel.setText(doel);
 
             // get inzet
-//            TextView textViewInzet = (TextView) findViewById(R.id.inzetinhoud);
-//            textViewInzet.setText(inzet);
-//            // get onderwerp
-//            final TextView textViewOnderwerp = (TextView) findViewById(R.id.titelinhoud);
-//            textViewOnderwerp.setTypeface(comfortaa);
-//            textViewOnderwerp.setText(onderwerp);
-//            // get titel
-//            TextView textViewTitel = (TextView) findViewById(R.id.categorieinhoud);
-//            RelativeLayout kaartcontent = (RelativeLayout) findViewById(R.id.kaartcontent);
-//            textViewTitel.setTypeface(comfortaa);
-//            textViewTitel.setText(title);
-//            if (title.equals("Probleem")) {
-//                kaartcontent.setBackgroundColor(getColor(R.color.magentaL));
-//                textViewOnderwerp.setBackgroundColor(getColor(R.color.magenta));
-//            } else if (title.equals("Concepting")) {
-//                kaartcontent.setBackgroundColor(getColor(R.color.blueL));
-//                textViewOnderwerp.setBackgroundColor(getColor(R.color.blue));
-//            } else if (title.equals("Prototype")) {
-//                kaartcontent.setBackgroundColor(getColor(R.color.greenL));
-//                textViewOnderwerp.setBackgroundColor(getColor(R.color.green));
-//            }
-//            // get uitvoering
-//            TextView textViewUitvoering = (TextView) findViewById(R.id.uitvoeringinhoud);
-//            textViewUitvoering.setText(uitkomst);
-//            // get URL
-//            ImageView image = (ImageView) findViewById(R.id.cardImage);
-//            Picasso.with(getBaseContext()).load(url).into(image);
+            TextView textViewInzet = (TextView) V.findViewById(R.id.inzetinhoud);
+            textViewInzet.setText(inzet);
+
+            // get onderwerp
+            final TextView textViewOnderwerp = (TextView) V.findViewById(R.id.titelinhoud);
+            textViewOnderwerp.setTypeface(comfortaa);
+            textViewOnderwerp.setText(onderwerp);
+
+            // get titel
+            TextView textViewTitel = (TextView) V.findViewById(R.id.categorieinhoud);
+            RelativeLayout kaartcontent = (RelativeLayout) V.findViewById(R.id.kaartcontent);
+            textViewTitel.setTypeface(comfortaa);
+            textViewTitel.setText(title);
+
+            if (title.equals("Probleem")) {
+                kaartcontent.setBackgroundColor(getActivity().getResources().getColor(R.color.magentaL));
+                textViewOnderwerp.setBackgroundColor(getActivity().getResources().getColor(R.color.magenta));
+            } else if (title.equals("Concepting")) {
+                kaartcontent.setBackgroundColor(getActivity().getResources().getColor(R.color.blueL));
+                textViewOnderwerp.setBackgroundColor(getActivity().getResources().getColor(R.color.blue));
+            } else if (title.equals("Prototype")) {
+                kaartcontent.setBackgroundColor(getActivity().getResources().getColor(R.color.greenL));
+                textViewOnderwerp.setBackgroundColor(getActivity().getResources().getColor(R.color.green));
+            }
+            // get uitvoering
+            TextView textViewUitvoering = (TextView) V.findViewById(R.id.uitvoeringinhoud);
+            textViewUitvoering.setText(uitkomst);
+            // get URL
+            ImageView image = (ImageView) V.findViewById(R.id.cardImage);
+            Picasso.with(getActivity().getBaseContext()).load(url).into(image);
 
             return V;
         }
