@@ -127,6 +127,7 @@ public class CardViewActivity extends AppCompatActivity {
             String inzet =  getActivity().getIntent().getStringExtra("INZET");
             String url =  getActivity().getIntent().getStringExtra("URL");
 
+
             Typeface comfortaa = Typeface.createFromAsset(getActivity().getAssets(), "fonts/Comfortaa-Regular.ttf");
 
             // get doel
@@ -177,15 +178,23 @@ public class CardViewActivity extends AppCompatActivity {
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                                  Bundle savedInstanceState) {
 
-            View v = inflater.inflate(R.layout.card_front, container, false);
+            View V = inflater.inflate(R.layout.card_front, container, false);
 
             String onderwerp =  getActivity().getIntent().getStringExtra("ONDERWERP");
             String title =  getActivity().getIntent().getStringExtra("TITLE");
+            String bronnen =  getActivity().getIntent().getStringExtra("BRONNEN");
+            String opdracht =  getActivity().getIntent().getStringExtra("OPDRACHT");
 
             Typeface comfortaa = Typeface.createFromAsset(getActivity().getAssets(), "fonts/Comfortaa-Regular.ttf");
 
+            TextView textViewBronnen = (TextView) V.findViewById(R.id.bronneninhoud);
+            textViewBronnen.setText(bronnen);
+
+            TextView textViewInhoud = (TextView) V.findViewById(R.id.opdrachtinhoud);
+            textViewInhoud.setText(opdracht);
+
             // get onderwerp
-            final TextView textViewOnderwerp = (TextView) v.findViewById(R.id.titelinhoud);
+            final TextView textViewOnderwerp = (TextView) V.findViewById(R.id.titelinhoud);
             textViewOnderwerp.setTypeface(comfortaa);
             textViewOnderwerp.setText(onderwerp);
 
@@ -199,7 +208,7 @@ public class CardViewActivity extends AppCompatActivity {
                 //kaartcontent.setBackgroundColor(getActivity().getResources().getColor(R.color.greenL));
                 textViewOnderwerp.setBackgroundColor(getActivity().getResources().getColor(R.color.green));
             }
-            return v;
+            return V;
         }
     }
 

@@ -31,16 +31,17 @@ import models.TestModel;
 
 public class addcard extends AppCompatActivity {
 
-    EditText getdoel, getinzet, getonderwerp, gettitel, getuitvoering, geturl;
+    EditText getdoel, getinzet, getonderwerp, titel, getuitvoering, geturl, getbronnen, getopdracht;
     TextView setcategorie, saveText;
     ButtonBarLayout submit;
     private TextView titleInhoud;
     private TextView titleInhoud2;
     private LinearLayout cardlayout;
     Integer selectedSubject;
-    String url, categorie;
+    String url, categorie, inzet, setinzet;
     ScrollView addCardSroll;
     Window window;
+    Button settime;
 
     ImageButton setUrlButton;
 
@@ -59,10 +60,14 @@ public class addcard extends AppCompatActivity {
 
         getdoel = (EditText) findViewById(R.id.makedoel);
         //getinzet = (EditText) findViewById(R.id.makeinzet);
-        getonderwerp = (EditText) findViewById(R.id.makeonderwerp);
+        getonderwerp = (EditText) findViewById(R.id.titelinhoud);
         //gettitel = (EditText) findViewById(R.id.maketitel);
-        //getuitvoering = (EditText) findViewById(R.id.makeuitvoering);
+        getuitvoering = (EditText) findViewById(R.id.makeuitvoering);
         //geturl = (EditText) findViewById(R.id.makeurl);
+        getbronnen = (EditText) findViewById(R.id.bronnen);
+        getopdracht = (EditText) findViewById(R.id.opdracht);
+
+        settime =  (Button) findViewById(R.id.settimebtn);
 
         addCardSroll = (ScrollView) findViewById(R.id.addcardscrollview);
 
@@ -103,6 +108,13 @@ public class addcard extends AppCompatActivity {
         submit = (ButtonBarLayout) findViewById(R.id.submitcard);
         setUrlButton = (ImageButton) findViewById(R.id.addUrlButton);
 
+        settime.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                settimedialog();
+            }
+        });
+
         setUrlButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -114,11 +126,10 @@ public class addcard extends AppCompatActivity {
             public void onClick(View v) {
 
                 String Agetdoel = getdoel.getText().toString();
-                String Agetinzet = getinzet.getText().toString();
                 String Agetonderwerp = getonderwerp.getText().toString();
-                String Agettitel = gettitel.getText().toString();
                 String Agetuitvoering = getuitvoering.getText().toString();
-                String Ageturl = geturl.getText().toString();
+                String Agetbronnen = getbronnen.getText().toString();
+                String Agetopdracht = getopdracht.getText().toString();
 
                 Boolean truefalse = true;
 
@@ -127,19 +138,16 @@ public class addcard extends AppCompatActivity {
                 if (Agetdoel.matches("")) {
                     truefalse = false;
                 }
-                if (Agetinzet.matches("")) {
-                    truefalse = false;
-                }
                 if (Agetonderwerp.matches("")) {
-                    truefalse = false;
-                }
-                if (Agettitel.matches("")) {
                     truefalse = false;
                 }
                 if (Agetuitvoering.matches("")) {
                     truefalse = false;
                 }
-                if (Ageturl.matches("")) {
+                if (Agetbronnen.matches("")) {
+                    truefalse = false;
+                }
+                if (Agetopdracht.matches("")) {
                     truefalse = false;
                 }
 
@@ -148,9 +156,9 @@ public class addcard extends AppCompatActivity {
                 } else {
 
                     String id = databasekaarten.push().getKey();
-                    TestModel testmodel = new TestModel(Agetdoel, Agetinzet, Agetonderwerp, Agettitel, Agetuitvoering, Ageturl);
+                    TestModel testmodel = new TestModel(Agetdoel, setinzet, Agetonderwerp, categorie, Agetuitvoering, url, Agetbronnen, Agetopdracht);
 
-                    databasekaarten.child(id).setValue(testmodel);
+                    databasekaarten.child("Customcards").child(id).setValue(testmodel);
 
                     Toast.makeText(getApplicationContext(), "kaart uploaded to database", Toast.LENGTH_SHORT).show();
                 }
@@ -190,6 +198,7 @@ public class addcard extends AppCompatActivity {
                         // of the selected item
                         String[] sexArray = getResources().getStringArray(R.array.subjectArray);
                         setcategorie.setText(sexArray[which]);
+                        categorie = sexArray[which];
                         if (sexArray[which].equals("Prototype")) {
                             titleInhoud.setBackgroundColor(getColor(R.color.green));
                             titleInhoud2.setBackgroundColor(getColor(R.color.green));
@@ -208,6 +217,47 @@ public class addcard extends AppCompatActivity {
                             addCardSroll.setBackgroundColor(getColor(R.color.magentaL));
                             window.setStatusBarColor(getColor(R.color.magenta));
                         }
+
+                    }
+                });
+        AlertDialog chooseSubject = builder.create();
+        chooseSubject.show();
+
+    }
+
+    public void settimedialog() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Set time")
+                .setItems(R.array.timeArray, new DialogInterface.OnClickListener() {
+                    @RequiresApi(api = Build.VERSION_CODES.M)
+                    public void onClick(DialogInterface dialog, int which) {
+                        // The 'which' argument contains the index position
+                        // of the selected item
+                        String[] sexArray = getResources().getStringArray(R.array.timeArray);
+                        inzet = sexArray[which];
+
+                        if (inzet.equals("1 uur")){
+                            setinzet = "1";
+                        }
+                        if (inzet.equals("2 uur")){
+                            setinzet = "2";
+                        }
+                        if (inzet.equals("3 uur")){
+                            setinzet = "3";
+                        }
+                        if (inzet.equals("1 dag")){
+                            setinzet = "4";
+                        }
+                        if (inzet.equals("2 dag")){
+                            setinzet = "5";
+                        }
+                        if (inzet.equals("3 dag")){
+                            setinzet = "6";
+                        }
+                        if (inzet.equals("1 week")){
+                            setinzet = "7";
+                        }
+
 
                     }
                 });

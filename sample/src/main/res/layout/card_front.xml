@@ -47,7 +47,7 @@
                 android:textSize="24dp" />
 
             <TextView
-                android:id="@+id/doelinhoud"
+                android:id="@+id/opdrachtinhoud"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
@@ -71,7 +71,7 @@
                 android:textSize="24dp" />
 
             <TextView
-                android:id="@+id/uitvoeringinhoud"
+                android:id="@+id/bronneninhoud"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"

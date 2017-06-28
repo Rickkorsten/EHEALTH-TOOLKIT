@@ -25,6 +25,7 @@
         <item>Idee</item>
         <item>Prototype</item>
         <item>Concepting</item>
+        <item>Customcards</item>
     </string-array>
 
     <string-array name="sortArray">
@@ -32,4 +33,13 @@
         <item>titel</item>
     </string-array>
 
+    <string-array name="timeArray">
+        <item>1 uur</item>
+        <item>2 uur</item>
+        <item>3 uur</item>
+        <item>1 dag</item>
+        <item>2 dagen</item>
+        <item>3 dagen</item>
+        <item>1 week</item>
+    </string-array>
 </resources>

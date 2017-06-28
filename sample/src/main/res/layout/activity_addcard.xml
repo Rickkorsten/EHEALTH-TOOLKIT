@@ -126,7 +126,7 @@
                         android:textSize="22sp" />
 
                     <EditText
-                        android:id="@+id/makeonderwerp"
+                        android:id="@+id/makeuitvoering"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="20dp"
@@ -228,6 +228,7 @@
                         android:textSize="18sp" />
 
                     <Button
+                        android:id="@+id/settimebtn"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="Hoelang duurt de opdracht?"

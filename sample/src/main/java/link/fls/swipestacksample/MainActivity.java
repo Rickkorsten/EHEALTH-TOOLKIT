@@ -72,8 +72,9 @@ public class MainActivity extends AppCompatActivity implements SwipeStack.SwipeS
     private SwipeStack mSwipeStack;
     private SwipeStackAdapter mAdapter;
     private int position;
-    private String value, fotoURL, sortvalue;
+    private String value, fotoURL, sortvalue, querySave;
     private Typeface comfortaa;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -169,24 +170,53 @@ public class MainActivity extends AppCompatActivity implements SwipeStack.SwipeS
                         sortvalue = sexArray[which];
 
                         if (sortvalue.equals("tijd")){
-                            // clear the array
-                            mData.clear();
-                            // firebase
-                            FirebaseDatabase database = FirebaseDatabase.getInstance();
-                            // query
-                            Query ref = database.getReference("Cards").child("Probleem").orderByChild("inzet");
-                            getFirebaseContent(ref);
-                            mAdapter.notifyDataSetChanged();
+
+                            if (querySave.equals("")){
+
+                                // clear the array
+                                mData.clear();
+                                // firebase
+                                FirebaseDatabase database = FirebaseDatabase.getInstance();
+                                // query
+                                Query ref = database.getReference("Cards").child("Probleem").orderByChild("inzet");
+                                getFirebaseContent(ref);
+                                mAdapter.notifyDataSetChanged();
+
+                            }else{
+                                // clear the array
+                                mData.clear();
+                                // firebase
+                                FirebaseDatabase database = FirebaseDatabase.getInstance();
+                                // query
+                                Query ref = database.getReference("Cards").child(sortvalue).orderByChild("inzet");
+                                getFirebaseContent(ref);
+                                mAdapter.notifyDataSetChanged();
+                            }
+
                         }
                         if (sortvalue.equals("titel")){
-                            // clear the array
-                            mData.clear();
-                            // firebase
-                            FirebaseDatabase database = FirebaseDatabase.getInstance();
-                            // query
-                            Query ref = database.getReference("Cards").child("Probleem").orderByChild("onderwerp");
-                            getFirebaseContent(ref);
-                            mAdapter.notifyDataSetChanged();
+
+                            if (querySave.equals("")){
+
+                                // clear the array
+                                mData.clear();
+                                // firebase
+                                FirebaseDatabase database = FirebaseDatabase.getInstance();
+                                // query
+                                Query ref = database.getReference("Cards").child("Probleem").orderByChild("onderwerp");
+                                getFirebaseContent(ref);
+                                mAdapter.notifyDataSetChanged();
+
+                            }else {
+                                // clear the array
+                                mData.clear();
+                                // firebase
+                                FirebaseDatabase database = FirebaseDatabase.getInstance();
+                                // query
+                                Query ref = database.getReference("Cards").child(querySave).orderByChild("onderwerp");
+                                getFirebaseContent(ref);
+                                mAdapter.notifyDataSetChanged();
+                            }
                         }
 
                     }
@@ -214,10 +244,8 @@ public class MainActivity extends AppCompatActivity implements SwipeStack.SwipeS
                             // query
                             Query ref = database.getReference("Cards").child("Probleem");
                             getFirebaseContent(ref);
-                            Query ref2 = database.getReference("Cards").child("Concepting");
-                            getFirebaseContent(ref);
-                            getFirebaseContent(ref2);
                             mAdapter.notifyDataSetChanged();
+                            querySave = "probleem";
                         }
                         if (sortvalue.equals("Idee")){
                             // clear the array
@@ -225,9 +253,10 @@ public class MainActivity extends AppCompatActivity implements SwipeStack.SwipeS
                             // firebase
                             FirebaseDatabase database = FirebaseDatabase.getInstance();
                             // query
-                            Query ref = database.getReference("Cards").child("Probleem").orderByChild("titel");
+                            Query ref = database.getReference("Cards").child("Idee");
                             getFirebaseContent(ref);
                             mAdapter.notifyDataSetChanged();
+                            querySave = "Idee";
                         }
                         if (sortvalue.equals("Prototype")){
                             // clear the array
@@ -235,9 +264,10 @@ public class MainActivity extends AppCompatActivity implements SwipeStack.SwipeS
                             // firebase
                             FirebaseDatabase database = FirebaseDatabase.getInstance();
                             // query
-                            Query ref = database.getReference("Cards").child("Probleem").orderByChild("titel");
+                            Query ref = database.getReference("Cards").child("Prototype");
                             getFirebaseContent(ref);
                             mAdapter.notifyDataSetChanged();
+                            querySave = "Prototype";
                         }
                         if (sortvalue.equals("Concepting")){
                             // clear the array
@@ -245,9 +275,21 @@ public class MainActivity extends AppCompatActivity implements SwipeStack.SwipeS
                             // firebase
                             FirebaseDatabase database = FirebaseDatabase.getInstance();
                             // query
-                            Query ref = database.getReference("Cards").child("Probleem").orderByChild("titel");
+                            Query ref = database.getReference("Cards").child("Concepting");
                             getFirebaseContent(ref);
                             mAdapter.notifyDataSetChanged();
+                            querySave = "Concepting";
+                        }
+                        if (sortvalue.equals("Customcards")){
+                            // clear the array
+                            mData.clear();
+                            // firebase
+                            FirebaseDatabase database = FirebaseDatabase.getInstance();
+                            // query
+                            Query ref = database.getReference("Cards").child("Customcards");
+                            getFirebaseContent(ref);
+                            mAdapter.notifyDataSetChanged();
+                            querySave = "Concepting";
                         }
 
                     }
@@ -354,6 +396,8 @@ public class MainActivity extends AppCompatActivity implements SwipeStack.SwipeS
                     intent.putExtra("UITKOMST", mData.get(position).getUitvoering());
                     intent.putExtra("INZET", mData.get(position).getInzet());
                     intent.putExtra("URL", mData.get(position).geturl());
+                    intent.putExtra("OPDRACHT", mData.get(position).getOpdracht());
+                    intent.putExtra("BRONNEN", mData.get(position).getBronnen());
                     startActivity(intent);
                 }
             });
