@@ -89,41 +89,45 @@ public class CardViewActivity extends AppCompatActivity {
         @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                                  Bundle savedInstanceState) {
-            return inflater.inflate(R.layout.card_back, container, false);
-/*
-            // get doel
-            TextView textViewDoel = (TextView) findViewById(R.id.doelinhoud);
-            //textViewDoel.setText(doel);
-            // get inzet
-            TextView textViewInzet = (TextView) findViewById(R.id.inzetinhoud);
-            textViewInzet.setText(inzet);
-            // get onderwerp
-            final TextView textViewOnderwerp = (TextView) findViewById(R.id.titelinhoud);
-            textViewOnderwerp.setTypeface(comfortaa);
-            textViewOnderwerp.setText(onderwerp);
-            // get titel
-            TextView textViewTitel = (TextView) findViewById(R.id.categorieinhoud);
-            RelativeLayout kaartcontent = (RelativeLayout) findViewById(R.id.kaartcontent);
-            textViewTitel.setTypeface(comfortaa);
-            textViewTitel.setText(title);
-            if (title.equals("Probleem")) {
-                kaartcontent.setBackgroundColor(getColor(R.color.magentaL));
-                textViewOnderwerp.setBackgroundColor(getColor(R.color.magenta));
-            } else if (title.equals("Concepting")) {
-                kaartcontent.setBackgroundColor(getColor(R.color.blueL));
-                textViewOnderwerp.setBackgroundColor(getColor(R.color.blue));
-            } else if (title.equals("Prototype")) {
-                kaartcontent.setBackgroundColor(getColor(R.color.greenL));
-                textViewOnderwerp.setBackgroundColor(getColor(R.color.green));
-            }
-            // get uitvoering
-            TextView textViewUitvoering = (TextView) findViewById(R.id.uitvoeringinhoud);
-            textViewUitvoering.setText(uitkomst);
-            // get URL
-            ImageView image = (ImageView) findViewById(R.id.cardImage);
-            Picasso.with(getBaseContext()).load(url).into(image);
 
-            */
+            View V = inflater.inflate(R.layout.card_back, container, false);
+
+            String doel = getActivity().getIntent().getStringExtra("DOEL");
+
+            // get doel
+            TextView textViewDoel = (TextView) V.findViewById(R.id.doelinhoud);
+            textViewDoel.setText(doel);
+
+            // get inzet
+//            TextView textViewInzet = (TextView) findViewById(R.id.inzetinhoud);
+//            textViewInzet.setText(inzet);
+//            // get onderwerp
+//            final TextView textViewOnderwerp = (TextView) findViewById(R.id.titelinhoud);
+//            textViewOnderwerp.setTypeface(comfortaa);
+//            textViewOnderwerp.setText(onderwerp);
+//            // get titel
+//            TextView textViewTitel = (TextView) findViewById(R.id.categorieinhoud);
+//            RelativeLayout kaartcontent = (RelativeLayout) findViewById(R.id.kaartcontent);
+//            textViewTitel.setTypeface(comfortaa);
+//            textViewTitel.setText(title);
+//            if (title.equals("Probleem")) {
+//                kaartcontent.setBackgroundColor(getColor(R.color.magentaL));
+//                textViewOnderwerp.setBackgroundColor(getColor(R.color.magenta));
+//            } else if (title.equals("Concepting")) {
+//                kaartcontent.setBackgroundColor(getColor(R.color.blueL));
+//                textViewOnderwerp.setBackgroundColor(getColor(R.color.blue));
+//            } else if (title.equals("Prototype")) {
+//                kaartcontent.setBackgroundColor(getColor(R.color.greenL));
+//                textViewOnderwerp.setBackgroundColor(getColor(R.color.green));
+//            }
+//            // get uitvoering
+//            TextView textViewUitvoering = (TextView) findViewById(R.id.uitvoeringinhoud);
+//            textViewUitvoering.setText(uitkomst);
+//            // get URL
+//            ImageView image = (ImageView) findViewById(R.id.cardImage);
+//            Picasso.with(getBaseContext()).load(url).into(image);
+
+            return V;
         }
     }
 

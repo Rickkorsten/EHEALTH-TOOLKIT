@@ -133,7 +133,7 @@ public class MainActivity extends AppCompatActivity implements SwipeStack.SwipeS
         if (v.equals(mFab)) {
 
 
-            startActivity(new Intent(MainActivity.this, CardViewActivity.class));
+          //  startActivity(new Intent(MainActivity.this, CardViewActivity.class));
             mAdapter.notifyDataSetChanged();
         }
 
