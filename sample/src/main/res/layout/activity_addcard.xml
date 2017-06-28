@@ -103,10 +103,10 @@
 
                     <EditText
                         android:id="@+id/makedoel"
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="20dp"
-                        android:layout_marginRight="20dp"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginRight="15dp"
                         android:layout_marginTop="-2dp"
                         android:fontFamily="sans-serif-light"
                         android:hint="Schrijf hier in het kort je doel neer"
@@ -127,11 +127,11 @@
 
                     <EditText
                         android:id="@+id/makeuitvoering"
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="20dp"
-                        android:layout_marginLeft="20dp"
-                        android:layout_marginRight="20dp"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginRight="15dp"
                         android:layout_marginTop="-2dp"
                         android:fontFamily="sans-serif-light"
                         android:hint="Schrijf hier wat er bereikt kan worden met jouw kaart"
@@ -219,8 +219,8 @@
                         android:id="@+id/bronnen"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="20dp"
-                        android:layout_marginRight="20dp"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginRight="15dp"
                         android:layout_marginTop="-2dp"
                         android:fontFamily="sans-serif-light"
                         android:hint="Waar kan de gebruiker nog meer informatie vinden?"
@@ -232,7 +232,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="Hoelang duurt de opdracht?"
-                        android:layout_marginTop="20dp"
+                        android:layout_marginTop="15dp"
+                        android:layout_marginBottom="10dp"
                         android:layout_marginStart="20dp"
                         android:layout_marginEnd="20dp"/>
 

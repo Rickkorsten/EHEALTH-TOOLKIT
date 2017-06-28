@@ -1,5 +1,6 @@
 package link.fls.swipestacksample;
 
+import android.app.Activity;
 import android.content.DialogInterface;
 import android.graphics.Typeface;
 import android.os.Build;
@@ -160,7 +161,9 @@ public class addcard extends AppCompatActivity {
 
                     databasekaarten.child("Customcards").child(id).setValue(testmodel);
 
-                    Toast.makeText(getApplicationContext(), "kaart uploaded to database", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), Agetonderwerp + " is aangemaakt", Toast.LENGTH_SHORT).show();
+                    finish();
+
                 }
             }
         });
@@ -169,12 +172,12 @@ public class addcard extends AppCompatActivity {
     private void Urldialog() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("set URL");
-// Get the layout inflater
+        // Get the layout inflater
         final EditText input = new EditText(this);
 
         input.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
         builder.setView(input);
-// Add action buttons
+        // Add action buttons
         builder.setPositiveButton("accept", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int id) {
@@ -220,7 +223,10 @@ public class addcard extends AppCompatActivity {
 
                     }
                 });
+
         AlertDialog chooseSubject = builder.create();
+        chooseSubject.setCancelable(false);
+        chooseSubject.setCanceledOnTouchOutside(false);
         chooseSubject.show();
 
     }
