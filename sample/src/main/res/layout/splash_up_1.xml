@@ -11,7 +11,7 @@
 
     <TextView
         android:id="@+id/textView"
-        android:layout_width="wrap_content"
+        android:layout_width="350dp"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
@@ -19,9 +19,20 @@
         android:textColor="@color/white"
         android:text="Welkom"
         android:textSize="45dp"
-        android:fontFamily="sans-serif-light"
+        android:fontFamily="sans-serif"
         android:textStyle="normal"
         android:textAlignment="center" />
 
+    <TextView
+        android:layout_width="350dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="185dp"
+        android:fontFamily="sans-serif-light"
+        android:text="Deze app is ontwikkeld voor projectleiders die betrokken zijn bij de GGZ en ontwikkeling van e-health modules. De app dient als een alternatief op de fysieke toolkit kaarten. "
+        android:textColor="@color/white"
+        android:textSize="23dp"
+        />
 
 </RelativeLayout>
