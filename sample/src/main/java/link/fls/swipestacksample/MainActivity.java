@@ -194,6 +194,14 @@ public class MainActivity extends AppCompatActivity implements SwipeStack.SwipeS
 
     @Override
     public void onStackEmpty() {
+        // clear the array
+        mData.clear();
+        // firebase
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        // query
+        Query ref = database.getReference("Cards").child("Probleem");
+        getFirebaseContent(ref);
+        mAdapter.notifyDataSetChanged();
     }
 
     //////////// SWIPE STACKADAPTER CLASS //////////////////
