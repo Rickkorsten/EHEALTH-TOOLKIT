@@ -65,7 +65,7 @@ import com.squareup.picasso.Picasso;
 
 public class MainActivity extends AppCompatActivity implements SwipeStack.SwipeStackListener, View.OnClickListener {
 
-    private Button mButtonLeft, mButtonRight, sortbtn;
+    private Button mButtonLeft, mButtonRight, sortbtn, categoriebtn;
     private ButtonBarLayout mFab;
     private CardView cardviewcard;
     private ArrayList<TestModel> mData = new ArrayList<>();
@@ -93,10 +93,11 @@ public class MainActivity extends AppCompatActivity implements SwipeStack.SwipeS
         //load views
         mSwipeStack = (SwipeStack) findViewById(R.id.swipeStack);
         sortbtn = (Button) findViewById(R.id.sort);
+        categoriebtn = (Button) findViewById(R.id.categorieKies);
 
         // set clicks
         sortbtn.setOnClickListener(this);
-
+        categoriebtn.setOnClickListener(this);
         // set adapter
         mAdapter = new SwipeStackAdapter(mData);
         mSwipeStack.setAdapter(mAdapter);
@@ -150,6 +151,11 @@ public class MainActivity extends AppCompatActivity implements SwipeStack.SwipeS
 
         }
 
+        if (v.equals(categoriebtn)) {
+            setcategoriedialog();
+
+        }
+
     }
 
     public void setsortdialog() {
@@ -179,6 +185,67 @@ public class MainActivity extends AppCompatActivity implements SwipeStack.SwipeS
                             FirebaseDatabase database = FirebaseDatabase.getInstance();
                             // query
                             Query ref = database.getReference("Cards").child("Probleem").orderByChild("onderwerp");
+                            getFirebaseContent(ref);
+                            mAdapter.notifyDataSetChanged();
+                        }
+
+                    }
+                });
+        AlertDialog sortdialog = builder.create();
+        sortdialog.show();
+
+    }
+
+    public void  setcategoriedialog() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("sorteren op:")
+                .setItems(R.array.subjectArray, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+// The 'which' argument contains the index position
+// of the selected item
+                        String[] sexArray = getResources().getStringArray(R.array.subjectArray);
+                        sortvalue = sexArray[which];
+
+                        if (sortvalue.equals("Probleem")){
+                            // clear the array
+                            mData.clear();
+                            // firebase
+                            FirebaseDatabase database = FirebaseDatabase.getInstance();
+                            // query
+                            Query ref = database.getReference("Cards").child("Probleem");
+                            getFirebaseContent(ref);
+                            Query ref2 = database.getReference("Cards").child("Concepting");
+                            getFirebaseContent(ref);
+                            getFirebaseContent(ref2);
+                            mAdapter.notifyDataSetChanged();
+                        }
+                        if (sortvalue.equals("Idee")){
+                            // clear the array
+                            mData.clear();
+                            // firebase
+                            FirebaseDatabase database = FirebaseDatabase.getInstance();
+                            // query
+                            Query ref = database.getReference("Cards").child("Probleem").orderByChild("titel");
+                            getFirebaseContent(ref);
+                            mAdapter.notifyDataSetChanged();
+                        }
+                        if (sortvalue.equals("Prototype")){
+                            // clear the array
+                            mData.clear();
+                            // firebase
+                            FirebaseDatabase database = FirebaseDatabase.getInstance();
+                            // query
+                            Query ref = database.getReference("Cards").child("Probleem").orderByChild("titel");
+                            getFirebaseContent(ref);
+                            mAdapter.notifyDataSetChanged();
+                        }
+                        if (sortvalue.equals("Concepting")){
+                            // clear the array
+                            mData.clear();
+                            // firebase
+                            FirebaseDatabase database = FirebaseDatabase.getInstance();
+                            // query
+                            Query ref = database.getReference("Cards").child("Probleem").orderByChild("titel");
                             getFirebaseContent(ref);
                             mAdapter.notifyDataSetChanged();
                         }
