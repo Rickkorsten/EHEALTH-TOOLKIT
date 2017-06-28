@@ -11,14 +11,4 @@
         <item name="android:statusBarColor">@android:color/transparent</item>
         <item name="android:windowTranslucentNavigation">true</item>
     </style>
-
-    <style name="ThemeActionBar" parent="Widget.AppCompat.Light.ActionBar.Solid">
-        <!-- Support library compatibility -->
-        <item name="background">@null</item>
-        <item name="displayOptions">showHome|useLogo</item>
-        <item name="android:windowTranslucentStatus">true</item>
-        <item name="android:windowTranslucentNavigation">true</item>
-
-    </style>
-
 </resources>

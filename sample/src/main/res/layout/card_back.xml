@@ -1,12 +1,12 @@
 <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
-    android:layout_width="370dp"
-    android:layout_height="550dp"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
     android:layout_gravity="center"
     android:layout_weight="2"
     android:background="#a6c"
     android:gravity="bottom"
-    android:padding="16dp"
+    android:layout_margin="20dp"
     card_view:cardCornerRadius="@dimen/card_corner_radius"
     card_view:cardElevation="@dimen/elevation_large">
 
@@ -43,7 +43,7 @@
         android:id="@+id/kaartcontent"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/magentaL"
+        android:background="@color/white"
         android:layout_marginTop="200dp">
 
         <LinearLayout
@@ -74,7 +74,7 @@
                 android:fontFamily="sans-serif-light"
                 android:text="Doel"
                 android:textColor="#444"
-                android:textSize="22dp" />
+                android:textSize="24dp" />
 
             <TextView
                 android:id="@+id/doelinhoud"
@@ -85,8 +85,8 @@
                 android:layout_marginTop="-2dp"
                 android:fontFamily="sans-serif-light"
                 android:text="Een video prototype maken zodat je andere een impressie kan geven"
-                android:textColor="@color/white"
-                android:textSize="17dp" />
+                android:textColor="#666"
+                android:textSize="19dp" />
 
             <TextView
                 android:id="@+id/textView5"
@@ -98,7 +98,7 @@
                 android:fontFamily="sans-serif-light"
                 android:text="Uitkomst"
                 android:textColor="#444"
-                android:textSize="22dp" />
+                android:textSize="24dp" />
 
             <TextView
                 android:id="@+id/uitvoeringinhoud"
@@ -109,8 +109,8 @@
                 android:layout_marginTop="-2dp"
                 android:fontFamily="sans-serif-light"
                 android:text="Je idee kunnen delen met andere en zo meer feedback krijgen"
-                android:textColor="@color/white"
-                android:textSize="17dp" />
+                android:textColor="#666"
+                android:textSize="19dp" />
 
         </LinearLayout>
 

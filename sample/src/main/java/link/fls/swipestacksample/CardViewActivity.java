@@ -8,12 +8,16 @@ import android.os.Bundle;
 import android.app.Fragment;
 import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.ButtonBarLayout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -24,7 +28,7 @@ import com.squareup.picasso.Picasso;
 public class CardViewActivity extends AppCompatActivity {
 
     boolean isBackShow;
-    ImageButton switchButton;
+    private ButtonBarLayout switchButton;
     private Typeface comfortaa;
     public String onderwerp;
     public String title;
@@ -46,9 +50,20 @@ public class CardViewActivity extends AppCompatActivity {
         inzet = getIntent().getStringExtra("INZET");
         url = getIntent().getStringExtra("URL");
 
-        Toast.makeText(getBaseContext(), onderwerp, Toast.LENGTH_LONG).show();
+        LinearLayout layout = (LinearLayout) findViewById(R.id.cardActivity);
+
+        if (title.equals("Probleem")) {
+            layout.setBackgroundColor(getColor(R.color.magentaL));
+        } else if (title.equals("Concepting")) {
+            layout.setBackgroundColor(getColor(R.color.blueL));
+        } else if (title.equals("Prototype")) {
+            layout.setBackgroundColor(getColor(R.color.greenL));
+        }
 
         comfortaa = Typeface.createFromAsset(getAssets(), "fonts/Comfortaa-Regular.ttf");
+
+        TextView flipText = (TextView) findViewById(R.id.textView4);
+        flipText.setTypeface(comfortaa);
 
         getFragmentManager().beginTransaction().replace(R.id.container, new CardFrontFragment()).commit();
 
@@ -57,6 +72,18 @@ public class CardViewActivity extends AppCompatActivity {
                     .beginTransaction()
                     .add(R.id.container, new CardFrontFragment())
                     .commit();
+        }
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            Window window = getWindow();
+            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+            if (title.equals("Probleem")) {
+                window.setStatusBarColor(getColor(R.color.magentaL));
+            } else if (title.equals("Concepting")) {
+                window.setStatusBarColor(getColor(R.color.blueL));
+            } else if (title.equals("Prototype")) {
+                window.setStatusBarColor(getColor(R.color.greenL));
+            }
         }
 
         switchclick();
@@ -76,7 +103,7 @@ public class CardViewActivity extends AppCompatActivity {
     }
 
     private void switchclick() {
-        switchButton = (ImageButton) findViewById(R.id.switchButton);
+        switchButton = (ButtonBarLayout) findViewById(R.id.switchButton);
         switchButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -122,13 +149,13 @@ public class CardViewActivity extends AppCompatActivity {
             textViewTitel.setText(title);
 
             if (title.equals("Probleem")) {
-                kaartcontent.setBackgroundColor(getActivity().getResources().getColor(R.color.magentaL));
+                //kaartcontent.setBackgroundColor(getActivity().getResources().getColor(R.color.magentaL));
                 textViewOnderwerp.setBackgroundColor(getActivity().getResources().getColor(R.color.magenta));
             } else if (title.equals("Concepting")) {
-                kaartcontent.setBackgroundColor(getActivity().getResources().getColor(R.color.blueL));
+                //kaartcontent.setBackgroundColor(getActivity().getResources().getColor(R.color.blueL));
                 textViewOnderwerp.setBackgroundColor(getActivity().getResources().getColor(R.color.blue));
             } else if (title.equals("Prototype")) {
-                kaartcontent.setBackgroundColor(getActivity().getResources().getColor(R.color.greenL));
+                //kaartcontent.setBackgroundColor(getActivity().getResources().getColor(R.color.greenL));
                 textViewOnderwerp.setBackgroundColor(getActivity().getResources().getColor(R.color.green));
             }
             // get uitvoering
@@ -149,7 +176,30 @@ public class CardViewActivity extends AppCompatActivity {
         @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                                  Bundle savedInstanceState) {
-            return inflater.inflate(R.layout.card_front, container, false);
+
+            View v = inflater.inflate(R.layout.card_front, container, false);
+
+            String onderwerp =  getActivity().getIntent().getStringExtra("ONDERWERP");
+            String title =  getActivity().getIntent().getStringExtra("TITLE");
+
+            Typeface comfortaa = Typeface.createFromAsset(getActivity().getAssets(), "fonts/Comfortaa-Regular.ttf");
+
+            // get onderwerp
+            final TextView textViewOnderwerp = (TextView) v.findViewById(R.id.titelinhoud);
+            textViewOnderwerp.setTypeface(comfortaa);
+            textViewOnderwerp.setText(onderwerp);
+
+            if (title.equals("Probleem")) {
+                //kaartcontent.setBackgroundColor(getActivity().getResources().getColor(R.color.magentaL));
+                textViewOnderwerp.setBackgroundColor(getActivity().getResources().getColor(R.color.magenta));
+            } else if (title.equals("Concepting")) {
+                //kaartcontent.setBackgroundColor(getActivity().getResources().getColor(R.color.blueL));
+                textViewOnderwerp.setBackgroundColor(getActivity().getResources().getColor(R.color.blue));
+            } else if (title.equals("Prototype")) {
+                //kaartcontent.setBackgroundColor(getActivity().getResources().getColor(R.color.greenL));
+                textViewOnderwerp.setBackgroundColor(getActivity().getResources().getColor(R.color.green));
+            }
+            return v;
         }
     }
 
