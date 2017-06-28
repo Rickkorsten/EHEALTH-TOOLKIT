@@ -7,13 +7,19 @@ import android.os.Bundle;
 import android.support.annotation.RequiresApi;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.ButtonBarLayout;
+import android.text.Editable;
 import android.text.InputType;
+import android.text.TextWatcher;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -26,12 +32,15 @@ import models.TestModel;
 public class addcard extends AppCompatActivity {
 
     EditText getdoel, getinzet, getonderwerp, gettitel, getuitvoering, geturl;
-    TextView setcategorie;
-    Button submit;
+    TextView setcategorie, saveText;
+    ButtonBarLayout submit;
     private TextView titleInhoud;
+    private TextView titleInhoud2;
     private LinearLayout cardlayout;
     Integer selectedSubject;
     String url, categorie;
+    ScrollView addCardSroll;
+    Window window;
 
     ImageButton setUrlButton;
 
@@ -49,20 +58,49 @@ public class addcard extends AppCompatActivity {
         databasekaarten = FirebaseDatabase.getInstance().getReference("Cards");
 
         getdoel = (EditText) findViewById(R.id.makedoel);
-        getinzet = (EditText) findViewById(R.id.makeinzet);
+        //getinzet = (EditText) findViewById(R.id.makeinzet);
         getonderwerp = (EditText) findViewById(R.id.makeonderwerp);
-        gettitel = (EditText) findViewById(R.id.maketitel);
-        getuitvoering = (EditText) findViewById(R.id.makeuitvoering);
-        geturl = (EditText) findViewById(R.id.makeurl);
+        //gettitel = (EditText) findViewById(R.id.maketitel);
+        //getuitvoering = (EditText) findViewById(R.id.makeuitvoering);
+        //geturl = (EditText) findViewById(R.id.makeurl);
+
+        addCardSroll = (ScrollView) findViewById(R.id.addcardscrollview);
 
         setcategorie = (TextView) findViewById(R.id.categorieinhoud);
         titleInhoud = (TextView) findViewById(R.id.titelinhoud);
+        titleInhoud2 = (TextView) findViewById(R.id.titelinhoud2);
         cardlayout = (LinearLayout) findViewById(R.id.cardlayout);
+        saveText = (TextView) findViewById(R.id.savetext);
         comfortaa = Typeface.createFromAsset(getAssets(), "fonts/Comfortaa-Regular.ttf");
         titleInhoud.setTypeface(comfortaa);
+        titleInhoud2.setTypeface(comfortaa);
         setcategorie.setTypeface(comfortaa);
+        saveText.setTypeface(comfortaa);
 
-        submit = (Button) findViewById(R.id.submitcard);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            window = getWindow();
+            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+            window.setStatusBarColor(getResources().getColor(R.color.white));
+        }
+
+        titleInhoud.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                titleInhoud2.setText(charSequence);
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+                titleInhoud2.setText(editable);
+            }
+        });
+
+        submit = (ButtonBarLayout) findViewById(R.id.submitcard);
         setUrlButton = (ImageButton) findViewById(R.id.addUrlButton);
 
         setUrlButton.setOnClickListener(new View.OnClickListener() {
@@ -154,15 +192,21 @@ public class addcard extends AppCompatActivity {
                         setcategorie.setText(sexArray[which]);
                         if (sexArray[which].equals("Prototype")) {
                             titleInhoud.setBackgroundColor(getColor(R.color.green));
-                            cardlayout.setBackgroundColor(getColor(R.color.greenL));
+                            titleInhoud2.setBackgroundColor(getColor(R.color.green));
+                            addCardSroll.setBackgroundColor(getColor(R.color.greenL));
+                            window.setStatusBarColor(getColor(R.color.green));
                         }
                         if (sexArray[which].equals("Concepting")) {
                             titleInhoud.setBackgroundColor(getColor(R.color.blue));
-                            cardlayout.setBackgroundColor(getColor(R.color.blueL));
+                            titleInhoud2.setBackgroundColor(getColor(R.color.blue));
+                            addCardSroll.setBackgroundColor(getColor(R.color.blueL));
+                            window.setStatusBarColor(getColor(R.color.blue));
                         }
                         if (sexArray[which].equals("Probleem")) {
                             titleInhoud.setBackgroundColor(getColor(R.color.magenta));
-                            cardlayout.setBackgroundColor(getColor(R.color.magentaL));
+                            titleInhoud2.setBackgroundColor(getColor(R.color.magenta));
+                            addCardSroll.setBackgroundColor(getColor(R.color.magentaL));
+                            window.setStatusBarColor(getColor(R.color.magenta));
                         }
 
                     }
