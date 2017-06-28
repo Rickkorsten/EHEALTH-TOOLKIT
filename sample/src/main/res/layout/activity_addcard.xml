@@ -87,7 +87,8 @@
                         android:textAlignment="center"
                         android:textColor="#fff"
                         android:textSize="30dp"
-                        android:textStyle="normal" />
+                        android:textStyle="normal"
+                        android:inputType="textCapSentences"/>
 
                     <TextView
                         android:id="@+id/textView3"
@@ -111,7 +112,8 @@
                         android:fontFamily="sans-serif-light"
                         android:hint="Schrijf hier in het kort je doel neer"
                         android:textColor="#666"
-                        android:textSize="18sp" />
+                        android:textSize="18sp"
+                        android:inputType="textCapSentences"/>
 
                     <TextView
                         android:id="@+id/textView5"
@@ -136,7 +138,8 @@
                         android:fontFamily="sans-serif-light"
                         android:hint="Schrijf hier wat er bereikt kan worden met jouw kaart"
                         android:textColor="#666"
-                        android:textSize="18sp" />
+                        android:textSize="18sp"
+                        android:inputType="textCapSentences"/>
                 </LinearLayout>
 
             </RelativeLayout>
@@ -201,7 +204,8 @@
                         android:fontFamily="sans-serif-light"
                         android:hint="Omschrijf hier wat de opdracht is bij deze kaart"
                         android:textColor="#666"
-                        android:textSize="18sp" />
+                        android:textSize="18sp"
+                        android:inputType="textCapSentences"/>
 
                     <TextView
                         android:id="@+id/textView6"
@@ -225,7 +229,8 @@
                         android:fontFamily="sans-serif-light"
                         android:hint="Waar kan de gebruiker nog meer informatie vinden?"
                         android:textColor="#666"
-                        android:textSize="18sp" />
+                        android:textSize="18sp"
+                        android:inputType="textCapSentences"/>
 
                     <Button
                         android:id="@+id/settimebtn"

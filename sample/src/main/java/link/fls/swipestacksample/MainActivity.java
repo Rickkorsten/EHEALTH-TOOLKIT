@@ -24,6 +24,7 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.ContactsContract;
+import android.support.annotation.RequiresApi;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AlertDialog;
@@ -76,6 +77,7 @@ public class MainActivity extends AppCompatActivity implements SwipeStack.SwipeS
     private Typeface comfortaa;
 
 
+    @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -105,10 +107,13 @@ public class MainActivity extends AppCompatActivity implements SwipeStack.SwipeS
         mSwipeStack.setListener(this);
         comfortaa = Typeface.createFromAsset(getAssets(), "fonts/Comfortaa-Regular.ttf");
 
+        sortbtn.setTypeface(comfortaa);
+        categoriebtn.setTypeface(comfortaa);
+
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             Window window = getWindow();
             window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
-            window.setStatusBarColor(Color.TRANSPARENT);
+            window.setStatusBarColor(getColor(R.color.blueL));
         }
     }
 
@@ -143,7 +148,7 @@ public class MainActivity extends AppCompatActivity implements SwipeStack.SwipeS
         if (v.equals(mFab)) {
 
 
-          //  startActivity(new Intent(MainActivity.this, CardViewActivity.class));
+            //  startActivity(new Intent(MainActivity.this, CardViewActivity.class));
             mAdapter.notifyDataSetChanged();
         }
 
@@ -169,9 +174,9 @@ public class MainActivity extends AppCompatActivity implements SwipeStack.SwipeS
                         String[] sexArray = getResources().getStringArray(R.array.sortArray);
                         sortvalue = sexArray[which];
 
-                        if (sortvalue.equals("tijd")){
+                        if (sortvalue.equals("tijd")) {
 
-                            if (querySave.equals("")){
+                            if (querySave.equals("")) {
 
                                 // clear the array
                                 mData.clear();
@@ -182,7 +187,7 @@ public class MainActivity extends AppCompatActivity implements SwipeStack.SwipeS
                                 getFirebaseContent(ref);
                                 mAdapter.notifyDataSetChanged();
 
-                            }else{
+                            } else {
                                 // clear the array
                                 mData.clear();
                                 // firebase
@@ -194,9 +199,9 @@ public class MainActivity extends AppCompatActivity implements SwipeStack.SwipeS
                             }
 
                         }
-                        if (sortvalue.equals("titel")){
+                        if (sortvalue.equals("titel")) {
 
-                            if (querySave.equals("")){
+                            if (querySave.equals("")) {
 
                                 // clear the array
                                 mData.clear();
@@ -207,7 +212,7 @@ public class MainActivity extends AppCompatActivity implements SwipeStack.SwipeS
                                 getFirebaseContent(ref);
                                 mAdapter.notifyDataSetChanged();
 
-                            }else {
+                            } else {
                                 // clear the array
                                 mData.clear();
                                 // firebase
@@ -226,7 +231,7 @@ public class MainActivity extends AppCompatActivity implements SwipeStack.SwipeS
 
     }
 
-    public void  setcategoriedialog() {
+    public void setcategoriedialog() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("sorteren op:")
                 .setItems(R.array.subjectArray, new DialogInterface.OnClickListener() {
@@ -236,7 +241,7 @@ public class MainActivity extends AppCompatActivity implements SwipeStack.SwipeS
                         String[] sexArray = getResources().getStringArray(R.array.subjectArray);
                         sortvalue = sexArray[which];
 
-                        if (sortvalue.equals("Probleem")){
+                        if (sortvalue.equals("Probleem")) {
                             // clear the array
                             mData.clear();
                             // firebase
@@ -247,7 +252,7 @@ public class MainActivity extends AppCompatActivity implements SwipeStack.SwipeS
                             mAdapter.notifyDataSetChanged();
                             querySave = "probleem";
                         }
-                        if (sortvalue.equals("Idee")){
+                        if (sortvalue.equals("Idee")) {
                             // clear the array
                             mData.clear();
                             // firebase
@@ -258,7 +263,7 @@ public class MainActivity extends AppCompatActivity implements SwipeStack.SwipeS
                             mAdapter.notifyDataSetChanged();
                             querySave = "Idee";
                         }
-                        if (sortvalue.equals("Prototype")){
+                        if (sortvalue.equals("Prototype")) {
                             // clear the array
                             mData.clear();
                             // firebase
@@ -269,7 +274,7 @@ public class MainActivity extends AppCompatActivity implements SwipeStack.SwipeS
                             mAdapter.notifyDataSetChanged();
                             querySave = "Prototype";
                         }
-                        if (sortvalue.equals("Concepting")){
+                        if (sortvalue.equals("Concepting")) {
                             // clear the array
                             mData.clear();
                             // firebase
@@ -280,7 +285,7 @@ public class MainActivity extends AppCompatActivity implements SwipeStack.SwipeS
                             mAdapter.notifyDataSetChanged();
                             querySave = "Concepting";
                         }
-                        if (sortvalue.equals("Customcards")){
+                        if (sortvalue.equals("Customcards")) {
                             // clear the array
                             mData.clear();
                             // firebase
@@ -376,6 +381,9 @@ public class MainActivity extends AppCompatActivity implements SwipeStack.SwipeS
             } else if (title.equals("Prototype")) {
                 kaartcontent.setBackgroundColor(getColor(R.color.greenL));
                 textViewOnderwerp.setBackgroundColor(getColor(R.color.green));
+            } else if (title.equals("Idee")) {
+                kaartcontent.setBackgroundColor(getColor(R.color.yellowL));
+                textViewOnderwerp.setBackgroundColor(getColor(R.color.yellow));
             }
             // get uitvoering
             TextView textViewUitvoering = (TextView) convertView.findViewById(R.id.uitvoeringinhoud);
@@ -383,7 +391,11 @@ public class MainActivity extends AppCompatActivity implements SwipeStack.SwipeS
             // get URL
             ImageView image = (ImageView) convertView.findViewById(R.id.cardImage);
             fotoURL = mData.get(position).geturl();
-            Picasso.with(getBaseContext()).load(fotoURL).into(image);
+            if (fotoURL != null)
+                Picasso.with(getBaseContext()).load(fotoURL).into(image);
+            else
+                Picasso.with(getBaseContext()).load("http://www.colorhexa.com/333333.png").into(image);
+
 
             //Click card
             convertView.findViewById(R.id.btnbekijk).setOnClickListener(new View.OnClickListener() {

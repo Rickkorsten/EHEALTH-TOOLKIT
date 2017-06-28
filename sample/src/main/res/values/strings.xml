@@ -28,6 +28,13 @@
         <item>Customcards</item>
     </string-array>
 
+    <string-array name="subjectArray2">
+        <item>Probleem</item>
+        <item>Idee</item>
+        <item>Prototype</item>
+        <item>Concepting</item>
+    </string-array>
+
     <string-array name="sortArray">
         <item>tijd</item>
         <item>titel</item>

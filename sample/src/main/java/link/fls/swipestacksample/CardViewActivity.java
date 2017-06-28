@@ -58,6 +58,8 @@ public class CardViewActivity extends AppCompatActivity {
             layout.setBackgroundColor(getColor(R.color.blueL));
         } else if (title.equals("Prototype")) {
             layout.setBackgroundColor(getColor(R.color.greenL));
+        } else if (title.equals("Idee")) {
+            layout.setBackgroundColor(getColor(R.color.yellowL));
         }
 
         comfortaa = Typeface.createFromAsset(getAssets(), "fonts/Comfortaa-Regular.ttf");
@@ -83,6 +85,8 @@ public class CardViewActivity extends AppCompatActivity {
                 window.setStatusBarColor(getColor(R.color.blueL));
             } else if (title.equals("Prototype")) {
                 window.setStatusBarColor(getColor(R.color.greenL));
+            } else if (title.equals("Idee")) {
+                window.setStatusBarColor(getColor(R.color.yellowL));
             }
         }
 
@@ -158,13 +162,19 @@ public class CardViewActivity extends AppCompatActivity {
             } else if (title.equals("Prototype")) {
                 //kaartcontent.setBackgroundColor(getActivity().getResources().getColor(R.color.greenL));
                 textViewOnderwerp.setBackgroundColor(getActivity().getResources().getColor(R.color.green));
+            } else if (title.equals("Idee")) {
+                //kaartcontent.setBackgroundColor(getActivity().getResources().getColor(R.color.greenL));
+                textViewOnderwerp.setBackgroundColor(getActivity().getResources().getColor(R.color.yellow));
             }
             // get uitvoering
             TextView textViewUitvoering = (TextView) V.findViewById(R.id.uitvoeringinhoud);
             textViewUitvoering.setText(uitkomst);
             // get URL
             ImageView image = (ImageView) V.findViewById(R.id.cardImage);
-            Picasso.with(getActivity().getBaseContext()).load(url).into(image);
+            if (url != null)
+                Picasso.with(getActivity().getBaseContext()).load(url).into(image);
+            else
+                Picasso.with(getActivity().getBaseContext()).load("http://www.colorhexa.com/333333.png").into(image);
 
             return V;
         }
@@ -207,6 +217,9 @@ public class CardViewActivity extends AppCompatActivity {
             } else if (title.equals("Prototype")) {
                 //kaartcontent.setBackgroundColor(getActivity().getResources().getColor(R.color.greenL));
                 textViewOnderwerp.setBackgroundColor(getActivity().getResources().getColor(R.color.green));
+            } else if (title.equals("Idee")) {
+                //kaartcontent.setBackgroundColor(getActivity().getResources().getColor(R.color.greenL));
+                textViewOnderwerp.setBackgroundColor(getActivity().getResources().getColor(R.color.yellow));
             }
             return V;
         }

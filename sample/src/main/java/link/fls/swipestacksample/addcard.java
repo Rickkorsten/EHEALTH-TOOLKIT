@@ -194,12 +194,12 @@ public class addcard extends AppCompatActivity {
     public void setdialog() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle(R.string.dialogtitle)
-                .setItems(R.array.subjectArray, new DialogInterface.OnClickListener() {
+                .setItems(R.array.subjectArray2, new DialogInterface.OnClickListener() {
                     @RequiresApi(api = Build.VERSION_CODES.M)
                     public void onClick(DialogInterface dialog, int which) {
                         // The 'which' argument contains the index position
                         // of the selected item
-                        String[] sexArray = getResources().getStringArray(R.array.subjectArray);
+                        String[] sexArray = getResources().getStringArray(R.array.subjectArray2);
                         setcategorie.setText(sexArray[which]);
                         categorie = sexArray[which];
                         if (sexArray[which].equals("Prototype")) {
@@ -219,6 +219,12 @@ public class addcard extends AppCompatActivity {
                             titleInhoud2.setBackgroundColor(getColor(R.color.magenta));
                             addCardSroll.setBackgroundColor(getColor(R.color.magentaL));
                             window.setStatusBarColor(getColor(R.color.magenta));
+                        }
+                        if (sexArray[which].equals("Idee")) {
+                            titleInhoud.setBackgroundColor(getColor(R.color.yellow));
+                            titleInhoud2.setBackgroundColor(getColor(R.color.yellow));
+                            addCardSroll.setBackgroundColor(getColor(R.color.yellowL));
+                            window.setStatusBarColor(getColor(R.color.yellow));
                         }
 
                     }
