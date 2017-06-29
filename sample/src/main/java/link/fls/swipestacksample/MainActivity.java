@@ -98,7 +98,7 @@ public class MainActivity extends AppCompatActivity implements SwipeStack.SwipeS
                 window.setStatusBarColor(getColor(R.color.magentaL));
             }
         } else {
-            querySave = "Probleem";
+            querySave = "Concepting";
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                 Window window = getWindow();
                 window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
@@ -352,7 +352,34 @@ public class MainActivity extends AppCompatActivity implements SwipeStack.SwipeS
             textViewDoel.setText(mData.get(position).getDoel());
             // get inzet
             TextView textViewInzet = (TextView) convertView.findViewById(R.id.inzetinhoud);
-            textViewInzet.setText(mData.get(position).getInzet());
+            String test;
+            String inzet = mData.get(position).getInzet();
+
+            if (inzet.equals("1")){
+                test = "1 uur";
+            }
+            else if (inzet.equals("2")){
+                test = "2 uur";
+            }
+            else if (inzet.equals("3")){
+                test = "3 uur";
+            }
+            else if (inzet.equals("4")){
+                test = "1 dag";
+            }
+            else if (inzet.equals("5")){
+                test = "2 dagen";
+            }
+            else if (inzet.equals("6")){
+                test = "3 dagen";
+            }
+            else if (inzet.equals("7")){
+                test = "1 week";
+            } else {
+                test = "None";
+            }
+
+            textViewInzet.setText(test);
             // get onderwerp
             final TextView textViewOnderwerp = (TextView) convertView.findViewById(R.id.titelinhoud);
             textViewOnderwerp.setTypeface(comfortaa);

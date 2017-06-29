@@ -140,7 +140,31 @@ public class CardViewActivity extends AppCompatActivity {
 
             // get inzet
             TextView textViewInzet = (TextView) V.findViewById(R.id.inzetinhoud);
-            textViewInzet.setText(inzet);
+            String setinzet = "";
+
+            if (inzet.equals("1")){
+                setinzet = "1 uur";
+            }
+            if (inzet.equals("2")){
+                setinzet = "2 uur";
+            }
+            if (inzet.equals("3")){
+                setinzet = "3 uur";
+            }
+            if (inzet.equals("4")){
+                setinzet = "1 dag";
+            }
+            if (inzet.equals("5")){
+                setinzet = "2 dagen";
+            }
+            if (inzet.equals("6")){
+                setinzet = "3 dagen";
+            }
+            if (inzet.equals("7")){
+                setinzet = "1 week";
+            }
+
+            textViewInzet.setText(setinzet);
 
             // get onderwerp
             final TextView textViewOnderwerp = (TextView) V.findViewById(R.id.titelinhoud);
