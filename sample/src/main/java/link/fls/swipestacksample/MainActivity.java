@@ -83,20 +83,40 @@ public class MainActivity extends AppCompatActivity implements SwipeStack.SwipeS
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        categoriebtn = (Button) findViewById(R.id.categorieKies);
+        sortbtn = (Button) findViewById(R.id.sort);
+
+        if (getIntent().getStringExtra("CUSTOM").equals("TRUE")){
+            querySave = "Customcards";
+            categoriebtn.setVisibility(View.INVISIBLE);
+            sortbtn.setBackgroundColor(getColor(R.color.magentaL));
+            findViewById(R.id.topButtons).setBackgroundColor(getColor(R.color.magentaL));
+
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                Window window = getWindow();
+                window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+                window.setStatusBarColor(getColor(R.color.magentaL));
+            }
+        } else {
+            querySave = "Probleem";
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                Window window = getWindow();
+                window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+                window.setStatusBarColor(getColor(R.color.blueL));
+            }
+        }
 
         // get from firebase
         FirebaseDatabase database = FirebaseDatabase.getInstance();
 
         // query
-        Query ref = database.getReference("Cards").child("Probleem");
+        Query ref = database.getReference("Cards").child(querySave);
 
         // parse ref into card content loader
         getFirebaseContent(ref);
 
         //load views
         mSwipeStack = (SwipeStack) findViewById(R.id.swipeStack);
-        sortbtn = (Button) findViewById(R.id.sort);
-        categoriebtn = (Button) findViewById(R.id.categorieKies);
 
         // set clicks
         sortbtn.setOnClickListener(this);
@@ -110,11 +130,7 @@ public class MainActivity extends AppCompatActivity implements SwipeStack.SwipeS
         sortbtn.setTypeface(comfortaa);
         categoriebtn.setTypeface(comfortaa);
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            Window window = getWindow();
-            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
-            window.setStatusBarColor(getColor(R.color.blueL));
-        }
+
     }
 
     public void getFirebaseContent(Query ref) {
@@ -176,55 +192,30 @@ public class MainActivity extends AppCompatActivity implements SwipeStack.SwipeS
 
                         if (sortvalue.equals("tijd")) {
 
-                            if (querySave.equals("")) {
-
-                                // clear the array
-                                mData.clear();
-                                // firebase
-                                FirebaseDatabase database = FirebaseDatabase.getInstance();
-                                // query
-                                Query ref = database.getReference("Cards").child("Probleem").orderByChild("inzet");
-                                getFirebaseContent(ref);
-                                mAdapter.notifyDataSetChanged();
-
-                            } else {
-                                // clear the array
-                                mData.clear();
-                                // firebase
-                                FirebaseDatabase database = FirebaseDatabase.getInstance();
-                                // query
-                                Query ref = database.getReference("Cards").child(sortvalue).orderByChild("inzet");
-                                getFirebaseContent(ref);
-                                mAdapter.notifyDataSetChanged();
-                            }
+                            // clear the array
+                            mData.clear();
+                            // firebase
+                            FirebaseDatabase database = FirebaseDatabase.getInstance();
+                            // query
+                            Query ref = database.getReference("Cards").child(querySave).orderByChild("inzet");
+                            getFirebaseContent(ref);
+                            mAdapter.notifyDataSetChanged();
 
                         }
                         if (sortvalue.equals("titel")) {
 
-                            if (querySave.equals("")) {
-
-                                // clear the array
-                                mData.clear();
-                                // firebase
-                                FirebaseDatabase database = FirebaseDatabase.getInstance();
-                                // query
-                                Query ref = database.getReference("Cards").child("Probleem").orderByChild("onderwerp");
-                                getFirebaseContent(ref);
-                                mAdapter.notifyDataSetChanged();
-
-                            } else {
-                                // clear the array
-                                mData.clear();
-                                // firebase
-                                FirebaseDatabase database = FirebaseDatabase.getInstance();
-                                // query
-                                Query ref = database.getReference("Cards").child(querySave).orderByChild("onderwerp");
-                                getFirebaseContent(ref);
-                                mAdapter.notifyDataSetChanged();
-                            }
+                            // clear the array
+                            mData.clear();
+                            // firebase
+                            FirebaseDatabase database = FirebaseDatabase.getInstance();
+                            // query
+                            Query ref = database.getReference("Cards").child(querySave).orderByChild("onderwerp");
+                            getFirebaseContent(ref);
+                            mAdapter.notifyDataSetChanged();
                         }
-
                     }
+
+
                 });
         AlertDialog sortdialog = builder.create();
         sortdialog.show();
@@ -250,7 +241,7 @@ public class MainActivity extends AppCompatActivity implements SwipeStack.SwipeS
                             Query ref = database.getReference("Cards").child("Probleem");
                             getFirebaseContent(ref);
                             mAdapter.notifyDataSetChanged();
-                            querySave = "probleem";
+                            querySave = "Probleem";
                         }
                         if (sortvalue.equals("Idee")) {
                             // clear the array
@@ -294,7 +285,7 @@ public class MainActivity extends AppCompatActivity implements SwipeStack.SwipeS
                             Query ref = database.getReference("Cards").child("Customcards");
                             getFirebaseContent(ref);
                             mAdapter.notifyDataSetChanged();
-                            querySave = "Concepting";
+                            querySave = "Customcards";
                         }
 
                     }
@@ -321,7 +312,7 @@ public class MainActivity extends AppCompatActivity implements SwipeStack.SwipeS
         // firebase
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         // query
-        Query ref = database.getReference("Cards").child("Probleem");
+        Query ref = database.getReference("Cards").child(querySave);
         getFirebaseContent(ref);
         mAdapter.notifyDataSetChanged();
     }

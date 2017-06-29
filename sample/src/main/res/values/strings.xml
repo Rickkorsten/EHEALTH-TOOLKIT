@@ -18,21 +18,25 @@
     <string name="skip">SKIP</string>
     <string name="start">GOT IT</string>
     <string name="dialogtitle">Kies een Categorie</string>
+    <string name="uitkomst">Uitkomst</string>
+    <string name="doel">Doel</string>
+    <string name="methode">Methode</string>
+    <string name="lees_meer">Lees meer</string>
 
        
     <string-array name="subjectArray">
-        <item>Probleem</item>
-        <item>Idee</item>
-        <item>Prototype</item>
         <item>Concepting</item>
-        <item>Customcards</item>
+        <item>Idee</item>
+        <item>Probleem</item>
+        <item>Prototype</item>
     </string-array>
 
     <string-array name="subjectArray2">
-        <item>Probleem</item>
-        <item>Idee</item>
-        <item>Prototype</item>
         <item>Concepting</item>
+        <item>Idee</item>
+        <item>Probleem</item>
+        <item>Prototype</item>
+
     </string-array>
 
     <string-array name="sortArray">

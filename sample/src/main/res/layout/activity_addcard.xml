@@ -98,7 +98,7 @@
                         android:layout_marginRight="20dp"
                         android:layout_marginTop="10dp"
                         android:fontFamily="sans-serif-light"
-                        android:text="Doel"
+                        android:text="@string/doel"
                         android:textColor="#333"
                         android:textSize="22sp" />
 
@@ -123,7 +123,7 @@
                         android:layout_marginRight="20dp"
                         android:layout_marginTop="12dp"
                         android:fontFamily="sans-serif-light"
-                        android:text="Uitkomst"
+                        android:text="@string/uitkomst"
                         android:textColor="#333"
                         android:textSize="22sp" />
 
@@ -190,7 +190,7 @@
                         android:layout_marginRight="20dp"
                         android:layout_marginTop="10dp"
                         android:fontFamily="sans-serif-light"
-                        android:text="De opdracht"
+                        android:text="@string/methode"
                         android:textColor="#444"
                         android:textSize="22sp" />
 
@@ -215,7 +215,7 @@
                         android:layout_marginRight="20dp"
                         android:layout_marginTop="12dp"
                         android:fontFamily="sans-serif-light"
-                        android:text="Bronnen"
+                        android:text="@string/lees_meer"
                         android:textColor="#444"
                         android:textSize="22sp" />
 

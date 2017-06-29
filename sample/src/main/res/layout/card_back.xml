@@ -25,19 +25,30 @@
         android:layout_marginBottom="-10px"
         android:padding="12dp"
         android:rotation="-90"
-        android:text="Conceptinggggg"
         android:textAlignment="textEnd"
         android:textColor="@color/white"
-        android:textSize="18dp" />
+        android:textSize="18sp" />
+
+    <ImageView
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_gravity="right"
+        android:layout_marginEnd="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginTop="10dp"
+        android:src="@drawable/ic_access_time_black_24dp" />
 
     <TextView
         android:id="@+id/inzetinhoud"
-        android:layout_width="wrap_content"
+        android:layout_width="65dp"
         android:layout_height="wrap_content"
-        android:text="2"
-        android:textColor="@color/black"
-        android:textSize="18dp"
-        android:visibility="gone" />
+        android:layout_marginTop="42dp"
+        android:layout_gravity="end"
+        android:gravity="center"
+        android:text="1 dag"
+        android:textColor="@color/white"
+        android:textSize="14sp" />
+
 
     <RelativeLayout
         android:id="@+id/kaartcontent"
@@ -58,10 +69,9 @@
                 android:background="@color/magenta"
                 android:paddingBottom="14dp"
                 android:paddingTop="8dp"
-                android:text="Video prototype"
                 android:textAlignment="center"
                 android:textColor="#fff"
-                android:textSize="30dp"
+                android:textSize="30sp"
                 android:textStyle="normal" />
 
             <ScrollView
@@ -81,9 +91,9 @@
                         android:layout_marginRight="20dp"
                         android:layout_marginTop="10dp"
                         android:fontFamily="sans-serif-light"
-                        android:text="Doel"
+                        android:text="@string/doel"
                         android:textColor="#444"
-                        android:textSize="24dp" />
+                        android:textSize="24sp" />
 
                     <TextView
                         android:id="@+id/doelinhoud"
@@ -93,9 +103,8 @@
                         android:layout_marginRight="20dp"
                         android:layout_marginTop="-2dp"
                         android:fontFamily="sans-serif-light"
-                        android:text="Een video prototype maken zodat je andere een impressie kan geven"
                         android:textColor="#666"
-                        android:textSize="19dp" />
+                        android:textSize="19sp" />
 
                     <TextView
                         android:id="@+id/textView5"
@@ -105,9 +114,9 @@
                         android:layout_marginRight="20dp"
                         android:layout_marginTop="12dp"
                         android:fontFamily="sans-serif-light"
-                        android:text="Uitkomst"
+                        android:text="@string/uitkomst"
                         android:textColor="#444"
-                        android:textSize="24dp" />
+                        android:textSize="24sp" />
 
                     <TextView
                         android:id="@+id/uitvoeringinhoud"
@@ -117,9 +126,8 @@
                         android:layout_marginRight="20dp"
                         android:layout_marginTop="-2dp"
                         android:fontFamily="sans-serif-light"
-                        android:text="Je idee kunnen delen met andere en zo meer feedback krijgen"
                         android:textColor="#666"
-                        android:textSize="19dp"
+                        android:textSize="19sp"
                         android:paddingBottom="20dp"/>
 
                 </LinearLayout>

@@ -41,48 +41,10 @@
                 android:textSize="18sp"
                 android:textAllCaps="false"
                 android:textColor="@color/white"
-                android:background="@color/blueL"/>
+                android:background="@color/blueL"
+                />
         </TableRow>
     </TableLayout>
-
-    <Button
-        android:id="@+id/button2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:enabled="false"
-        android:text="Sort by:"
-        android:visibility="gone" />
-
-    <Button
-        android:id="@+id/sorttime"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_toEndOf="@+id/sortbysubject"
-        android:layout_toRightOf="@+id/sortbysubject"
-        android:text="Time"
-        android:visibility="gone" />
-
-    <Button
-        android:id="@+id/sortbysubject"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_toEndOf="@+id/button2"
-        android:layout_toRightOf="@+id/button2"
-        android:text="Subject"
-        android:visibility="gone" />
-
-    <Button
-        android:id="@+id/sortbytitle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/sorttime"
-        android:layout_toEndOf="@+id/sorttime"
-        android:layout_toRightOf="@+id/sorttime"
-        android:text="title"
-        android:visibility="gone" />
 
     <link.fls.swipestack.SwipeStack
         android:id="@+id/swipeStack"
