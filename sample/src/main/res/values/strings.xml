@@ -40,8 +40,8 @@
     </string-array>
 
     <string-array name="sortArray">
-        <item>tijd</item>
-        <item>titel</item>
+        <item>Tijd</item>
+        <item>Titel</item>
     </string-array>
 
     <string-array name="timeArray">

@@ -182,7 +182,7 @@ public class MainActivity extends AppCompatActivity implements SwipeStack.SwipeS
 
     public void setsortdialog() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle("sorteren op:")
+        builder.setTitle("Sorteren op:")
                 .setItems(R.array.sortArray, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
 // The 'which' argument contains the index position
@@ -190,7 +190,7 @@ public class MainActivity extends AppCompatActivity implements SwipeStack.SwipeS
                         String[] sexArray = getResources().getStringArray(R.array.sortArray);
                         sortvalue = sexArray[which];
 
-                        if (sortvalue.equals("tijd")) {
+                        if (sortvalue.equals("Tijd")) {
 
                             // clear the array
                             mData.clear();
@@ -202,7 +202,7 @@ public class MainActivity extends AppCompatActivity implements SwipeStack.SwipeS
                             mAdapter.notifyDataSetChanged();
 
                         }
-                        if (sortvalue.equals("titel")) {
+                        if (sortvalue.equals("Titel")) {
 
                             // clear the array
                             mData.clear();
@@ -224,7 +224,7 @@ public class MainActivity extends AppCompatActivity implements SwipeStack.SwipeS
 
     public void setcategoriedialog() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle("sorteren op:")
+        builder.setTitle("Kies een categorie:")
                 .setItems(R.array.subjectArray, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
 // The 'which' argument contains the index position

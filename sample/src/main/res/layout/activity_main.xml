@@ -15,7 +15,7 @@
         android:layout_height="wrap_content"
         android:stretchColumns="0,1"
         android:background="@color/blueL"
-        android:elevation="2dp"
+        android:elevation="8dp"
 
         >
 
