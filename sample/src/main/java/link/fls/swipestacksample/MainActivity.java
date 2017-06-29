@@ -226,6 +226,7 @@ public class MainActivity extends AppCompatActivity implements SwipeStack.SwipeS
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("Kies een categorie:")
                 .setItems(R.array.subjectArray, new DialogInterface.OnClickListener() {
+                    @RequiresApi(api = Build.VERSION_CODES.M)
                     public void onClick(DialogInterface dialog, int which) {
 // The 'which' argument contains the index position
 // of the selected item
@@ -242,6 +243,15 @@ public class MainActivity extends AppCompatActivity implements SwipeStack.SwipeS
                             getFirebaseContent(ref);
                             mAdapter.notifyDataSetChanged();
                             querySave = "Probleem";
+                            categoriebtn.setBackgroundColor(getColor(R.color.magentaL));
+                            sortbtn.setBackgroundColor(getColor(R.color.magentaL));
+                            findViewById(R.id.topButtons).setBackgroundColor(getColor(R.color.magentaL));
+
+                            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                                Window window = getWindow();
+                                window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+                                window.setStatusBarColor(getColor(R.color.magentaL));
+                            }
                         }
                         if (sortvalue.equals("Idee")) {
                             // clear the array
@@ -253,6 +263,15 @@ public class MainActivity extends AppCompatActivity implements SwipeStack.SwipeS
                             getFirebaseContent(ref);
                             mAdapter.notifyDataSetChanged();
                             querySave = "Idee";
+                            categoriebtn.setBackgroundColor(getColor(R.color.yellowL));
+                            sortbtn.setBackgroundColor(getColor(R.color.yellowL));
+                            findViewById(R.id.topButtons).setBackgroundColor(getColor(R.color.yellowL));
+
+                            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                                Window window = getWindow();
+                                window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+                                window.setStatusBarColor(getColor(R.color.yellowL));
+                            }
                         }
                         if (sortvalue.equals("Prototype")) {
                             // clear the array
@@ -264,6 +283,15 @@ public class MainActivity extends AppCompatActivity implements SwipeStack.SwipeS
                             getFirebaseContent(ref);
                             mAdapter.notifyDataSetChanged();
                             querySave = "Prototype";
+                            categoriebtn.setBackgroundColor(getColor(R.color.greenL));
+                            sortbtn.setBackgroundColor(getColor(R.color.greenL));
+                            findViewById(R.id.topButtons).setBackgroundColor(getColor(R.color.greenL));
+
+                            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                                Window window = getWindow();
+                                window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+                                window.setStatusBarColor(getColor(R.color.greenL));
+                            }
                         }
                         if (sortvalue.equals("Concepting")) {
                             // clear the array
@@ -275,6 +303,15 @@ public class MainActivity extends AppCompatActivity implements SwipeStack.SwipeS
                             getFirebaseContent(ref);
                             mAdapter.notifyDataSetChanged();
                             querySave = "Concepting";
+                            categoriebtn.setBackgroundColor(getColor(R.color.blueL));
+                            sortbtn.setBackgroundColor(getColor(R.color.blueL));
+                            findViewById(R.id.topButtons).setBackgroundColor(getColor(R.color.blueL));
+
+                            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                                Window window = getWindow();
+                                window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+                                window.setStatusBarColor(getColor(R.color.blueL));
+                            }
                         }
                         if (sortvalue.equals("Customcards")) {
                             // clear the array

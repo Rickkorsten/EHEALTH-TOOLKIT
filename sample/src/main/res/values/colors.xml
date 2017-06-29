@@ -9,7 +9,7 @@
     <color name="blue">#006fed</color>
     <color name="magenta">#ec008c</color>
     <color name="green">#00ef00</color>
-    <color name="yellow">#ffd500</color>
+    <color name="yellow">#ffc400</color>
 
     <color name="blueD">#005fcc</color>
     <color name="magentaD">#cc007a</color>
@@ -18,8 +18,8 @@
 
     <color name="magentaL">#ff98d5</color>
     <color name="blueL">#7fb7f6</color>
-    <color name="greenL">#7ff77f</color>
-    <color name="yellowL">#ffe76d</color>
+    <color name="greenL">#6df96d</color>
+    <color name="yellowL">#ffd64c</color>
 
     <!-- Screens background color-->
         <color name="bg_screen1">#ec008c</color>

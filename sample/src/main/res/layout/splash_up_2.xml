@@ -14,21 +14,22 @@
         android:layout_marginTop="65dp"
         android:textColor="@color/white"
         android:text="Wij helpen jou..."
+        android:fontFamily="sans-serif-light"
         android:textSize="45dp"
-        android:fontFamily="sans-serif"
         android:textStyle="normal"
         android:textAlignment="center" />
 
     <TextView
-        android:layout_width="350dp"
+        android:layout_width="match_parent"
+        android:padding="20dp"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="185dp"
+        android:layout_marginTop="150dp"
         android:fontFamily="sans-serif-light"
         android:text="Deze toolkit is ontworpen in de vorm van een kaarten set. Aan de hand van de kaarten set worden methodes voor ontwikkeling van applicaties stapsgewijs uitgelegd,Methodes van idee generatie tot het creëren van prototypes."
         android:textColor="@color/white"
-        android:textSize="23dp"
+        android:textSize="20sp"
         />
 
 </RelativeLayout>

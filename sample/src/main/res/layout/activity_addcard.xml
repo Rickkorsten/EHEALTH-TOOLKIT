@@ -271,7 +271,7 @@
                 android:gravity="center_vertical"
                 android:text="Kaart opslaan"
                 android:textColor="@color/white"
-                android:textSize="20dp" />
+                android:textSize="20sp" />
 
         </android.support.v7.widget.ButtonBarLayout>
 
